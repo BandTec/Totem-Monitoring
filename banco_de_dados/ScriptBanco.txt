@@ -23,6 +23,7 @@ companhia_cliente varchar(40) NOT NULL,
 fk_aeroporto2 int,
 foreign key(fk_aeroporto2) references tb_aeroporto(id_aeroporto)
 );
+alter table tb_totem add status_totem bit NULL;
 
 create table tb_dados(
 id_dados int primary key identity(1,1),
@@ -43,3 +44,12 @@ fk_dados int,
 tempo datetime NOT NULL,
 foreign key(fk_dados) references tb_dados(id_dados)
 );
+
+create table tb_processos(
+pid int primary key identity(1,1),
+fk_totem int foreign key references tb_totem (id_totem),
+qtd_cpu decimal(5,2),
+qtd_memoria decimal(5,2),
+nome_processo varchar (100),
+status_processo bit
+); 

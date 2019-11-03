@@ -48,8 +48,8 @@ public class Totem {
 
         StringBuilder builder = new StringBuilder();
 
-//        builder.append(String.format("\n%-17s %-20s %-20s %-20s %-20s %-30s",
-//                "", "PID", "%CPU", "%MEM", "VSZ", "RSS Name"));
+//        builder.append(String.format("\n%-17s %-20s %-20s %-30s",
+//                "", "PID", "RSS Name", "%CPU", "%MEM"));
         final List<OSProcess> procs;
         procs = Arrays.asList(os.getProcesses(30, ProcessSort.CPU));
 
@@ -57,24 +57,21 @@ public class Totem {
             final OSProcess p = procs.get(i);
 
             String pid = String.valueOf(p.getProcessID());
+            String name = p.getName();
             String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
             Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
-            String virtualSize = FormatUtil.formatBytes(p.getVirtualSize());
-            String residentSize = FormatUtil.formatBytes(p.getResidentSetSize());
-            String name = p.getName();
+           
 //            String[] teste = {pid, cpuPorcentagem, memPorcentagem, virtualSize, residentSize, name};;
 //            
 //            for (int count = 0; count < teste.length; count++) {
 //                if(teste[i].length() < 20)
 //            }
-
-            builder.append(String.format("\n%20s %20s %20.1f %-20s %-20s %10s",
-                    pid,
-                    cpuPorcentagem,
-                    memPorcentagem,
-                    virtualSize,
-                    residentSize,
-                    name));
+    
+            builder.append(String.format("\n\t%-5d \t\t%-25s \t\t%.1f \t\t%.1f ",
+                    Integer.parseInt(pid),
+                    name,
+                    Double.parseDouble(cpuPorcentagem),
+                    memPorcentagem));
         }
         return builder.toString();
     }
@@ -85,7 +82,6 @@ public class Totem {
         this.cpu = this.capturaCpu(hw.getProcessor());
         this.memoria = this.capturaMemoria(hw.getMemory());
         this.disco = this.capturaDisco();
-
         this.processos = capturarProcessos(os, hw.getMemory());
     }
 

@@ -38,13 +38,12 @@ public class TelaProcessos extends javax.swing.JFrame {
         lblPid = new javax.swing.JLabel();
         lblPid1 = new javax.swing.JLabel();
         lblPid2 = new javax.swing.JLabel();
-        lblPid3 = new javax.swing.JLabel();
         lblPid4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        lbProcessos.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lbProcessos.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
         lbProcessos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbProcessos.setText("Processos");
         lbProcessos.setToolTipText("");
@@ -56,7 +55,7 @@ public class TelaProcessos extends javax.swing.JFrame {
         textProcessos.setEnabled(false);
         jScrollPane1.setViewportView(textProcessos);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,13 +67,10 @@ public class TelaProcessos extends javax.swing.JFrame {
         lblPid.setText("PID");
 
         lblPid1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        lblPid1.setText("%CPU");
+        lblPid1.setText("CPU(%)");
 
         lblPid2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        lblPid2.setText("%MEM");
-
-        lblPid3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        lblPid3.setText("VSZ");
+        lblPid2.setText("MEM(%)");
 
         lblPid4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         lblPid4.setText("Name");
@@ -84,50 +80,45 @@ public class TelaProcessos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(117, 117, 117)
+                .addComponent(lblPid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPid4)
+                .addGap(121, 121, 121)
+                .addComponent(lblPid1)
+                .addGap(89, 89, 89)
+                .addComponent(lblPid2)
+                .addGap(102, 102, 102))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(335, Short.MAX_VALUE)
-                .addComponent(lbProcessos)
-                .addGap(335, 335, 335))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(331, 331, 331))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(363, 363, 363)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(lblPid)
-                        .addGap(82, 82, 82)
-                        .addComponent(lblPid1)
-                        .addGap(98, 98, 98)
-                        .addComponent(lblPid2)
-                        .addGap(95, 95, 95)
-                        .addComponent(lblPid3)
-                        .addGap(96, 96, 96)
-                        .addComponent(lblPid4)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGap(324, 324, 324)
+                        .addComponent(lbProcessos)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(lbProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPid)
-                        .addComponent(lblPid1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPid2)
-                        .addComponent(lblPid3)
-                        .addComponent(lblPid4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPid4)
+                    .addComponent(lblPid)
+                    .addComponent(lblPid1)
+                    .addComponent(lblPid2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -181,7 +172,6 @@ public class TelaProcessos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPid;
     private javax.swing.JLabel lblPid1;
     private javax.swing.JLabel lblPid2;
-    private javax.swing.JLabel lblPid3;
     private javax.swing.JLabel lblPid4;
     private javax.swing.JTextArea textProcessos;
     // End of variables declaration//GEN-END:variables

@@ -49,13 +49,13 @@ public class TelaProcessos extends javax.swing.JFrame {
         lbProcessos.setToolTipText("");
 
         textProcessos.setColumns(20);
-        textProcessos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        textProcessos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         textProcessos.setRows(5);
         textProcessos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textProcessos.setEnabled(false);
         jScrollPane1.setViewportView(textProcessos);
 
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,16 +63,16 @@ public class TelaProcessos extends javax.swing.JFrame {
             }
         });
 
-        lblPid.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        lblPid.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         lblPid.setText("PID");
 
-        lblPid1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        lblPid1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         lblPid1.setText("CPU(%)");
 
-        lblPid2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        lblPid2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         lblPid2.setText("MEM(%)");
 
-        lblPid4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        lblPid4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         lblPid4.setText("Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,43 +80,43 @@ public class TelaProcessos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(141, 141, 141)
                 .addComponent(lblPid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblPid4)
-                .addGap(121, 121, 121)
+                .addGap(106, 106, 106)
                 .addComponent(lblPid1)
-                .addGap(89, 89, 89)
+                .addGap(100, 100, 100)
                 .addComponent(lblPid2)
-                .addGap(102, 102, 102))
+                .addGap(81, 81, 81))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(331, 331, 331))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(324, 324, 324)
-                        .addComponent(lbProcessos)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(334, 334, 334))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbProcessos)
+                        .addGap(335, 335, 335))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(lbProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPid4)
                     .addComponent(lblPid)
                     .addComponent(lblPid1)
                     .addComponent(lblPid2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );

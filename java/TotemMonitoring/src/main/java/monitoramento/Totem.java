@@ -67,7 +67,7 @@ public class Totem {
 //                if(teste[i].length() < 20)
 //            }
     
-            builder.append(String.format("\n\t%-5d \t\t%-25s \t\t%.1f \t\t%.1f ",
+            builder.append(String.format("\n\t%-5d \t\t%-25s \t%.1f \t\t%.1f ",
                     Integer.parseInt(pid),
                     name,
                     Double.parseDouble(cpuPorcentagem),

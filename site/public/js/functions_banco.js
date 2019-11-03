@@ -2,7 +2,7 @@ function verificarAutenticacao() {
   if (sessionStorage.usuario == undefined) {
     window.location.href = '/login.html';
     alert('Você deve estar autenticado');
-  }else{
+  } else {
     if (sessionStorage.ativo == 'true') {
       window.location.href = '/dashs/production/index.html';
     }
@@ -71,10 +71,94 @@ function cadastrarUsuario() {
   return false;
 }
 
+function buscarUsuarios() {
+
+  wait();
+  fk.value = sessionStorage.aeroporto;
+  var formulario = new URLSearchParams(new FormData(formulario_buscar));
+
+  fetch('../../usuarios/users', {
+    method: "POST",
+    body: formulario
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        body_table.innerHTML = "";
+        for (let i = 0; i < resposta.length; i++) {
+          var status = '';
+
+          if (resposta[i].ativo) {
+            status = 'ATIVO';
+            body_table.innerHTML += `<tr>
+            <td>${i + 1}</td>
+            <td>
+              <a>${resposta[i].nome}</a>
+              <br>
+              </td>
+              <td class="project_progress">
+                <a>${resposta[i].cpf_user}</a>
+              </td>
+              <td>
+                <span class="btn-success btn-xs"> ${status} </span>
+              </td>
+              <td>
+                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </a>
+                <button type="button" onclick="inativarUsuario(${resposta[i].id_user})" class="btn btn-xs btn-xs" style="background-color: orange"><i
+                class="fa fa-remove "></i> Desativar </button>
+              </td>
+           </tr>`;
+
+          } else {
+            status = 'INATIVO'
+
+            body_table.innerHTML += `<tr>
+            <td>${i + 1}</td>
+            <td>
+              <a>${resposta[i].nome}</a>
+              <br>
+              </td>
+              <td class="project_progress">
+                <a>${resposta[i].cpf_user}</a>
+              </td>
+              <td>
+                <span class="btn-success btn-xs"> ${status} </span>
+              </td>
+              <td>
+                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </a>
+                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-male"></i> Ativar </a>
+              </td>
+           </tr>`;
+          }
+        }
+        sessionStorage.body = body_table.innerHTML;
+        end_wait();
+      });
+    } else {
+      console.log('Errossss!');
+      end_wait();
+    }
+  });
+
+  return false;
+}
+
 function wait() {
   sendMessageButton.disabled = true;
 }
 
 function end_wait() {
   sendMessageButton.disabled = false;
+}
+
+function inativarUsuario(id_usuario) {
+  console.log(id_usuario)
+
+  fetch('../../usuarios/inativar_user', {
+    method: "POST",
+    body: id_usuario
+  }).then(function (response) {
+    end_wait();
+  });
+
+  return false;
 }

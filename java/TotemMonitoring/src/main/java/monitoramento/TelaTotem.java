@@ -16,6 +16,7 @@ public class TelaTotem extends javax.swing.JFrame {
         initComponents();
         lbSistemaOperacional.setText(String.valueOf(totem.getOs()));
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

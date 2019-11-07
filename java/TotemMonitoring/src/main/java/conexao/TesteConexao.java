@@ -40,7 +40,9 @@ public class TesteConexao {
         totem.capturarDados();
 
         jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, "
-                + "dd_tempo, fk_totem) values (?,?,?,?,?)", Double.parseDouble(totem.getCpu().replaceAll(",", ".")), Double.parseDouble(totem.getMemoria().replaceAll(",", ".").replaceAll("GiB", "")),
-                Double.parseDouble(totem.getDisco().replaceAll(",", ".").replaceAll("GiB", "")), LocalDateTime.now(), 2);
+                + "dd_tempo, fk_totem) values (?,?,?,?,?)", totem.getCpu(),
+                totem.getMemoria(),
+                totem.getDisco(),
+                totem.getTempo(), 2);
     }
 }

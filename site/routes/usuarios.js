@@ -112,13 +112,13 @@ router.post('/users', function (req, res, next) {
 router.post('/inativar_user', function (req, res, next) {
 
   banco.conectar().then(() => {
-    var id = parseInt(req.body)
+    var id = req.body.user_id
     console.log(req.body)
 
     if (id == undefined) {
       throw new Error(`Algo de errado não está certo: ${id}`);
     } else {
-      return banco.sql.query(`update tb_user set ativo=0 where id_user = ${id}`)
+      return banco.sql.query(`update tb_user set ativo=0 where id_user = "${id}"`)
     }
   }).catch(err => {
 

@@ -76,6 +76,7 @@ function buscarUsuarios() {
   wait();
   fk.value = sessionStorage.aeroporto;
   var formulario = new URLSearchParams(new FormData(formulario_buscar));
+  body_table.innerHTML = "";
 
   fetch('../../usuarios/users', {
     method: "POST",
@@ -83,7 +84,6 @@ function buscarUsuarios() {
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
-        body_table.innerHTML = "";
         for (let i = 0; i < resposta.length; i++) {
           var status = '';
 
@@ -152,10 +152,11 @@ function end_wait() {
 
 function inativarUsuario(id_usuario) {
   console.log(id_usuario)
+  var user = new URLSearchParams(id_usuario);
 
   fetch('../../usuarios/inativar_user', {
     method: "POST",
-    body: id_usuario
+    body: user
   }).then(function (response) {
     end_wait();
   });

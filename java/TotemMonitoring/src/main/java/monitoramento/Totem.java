@@ -44,8 +44,6 @@ public class Totem {
 
         StringBuilder builder = new StringBuilder();
 
-//        builder.append(String.format("\n%-17s %-20s %-20s %-30s",
-//                "", "PID", "RSS Name", "%CPU", "%MEM"));
         final List<OSProcess> procs;
         procs = Arrays.asList(os.getProcesses(30, ProcessSort.CPU));
 
@@ -56,12 +54,6 @@ public class Totem {
             String name = p.getName();
             String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
             Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
-           
-//            String[] teste = {pid, cpuPorcentagem, memPorcentagem, virtualSize, residentSize, name};;
-//            
-//            for (int count = 0; count < teste.length; count++) {
-//                if(teste[i].length() < 20)
-//            }
     
             builder.append(String.format("\n\t%-5d \t\t%-25s \t%.1f \t\t%.1f ",
                     Integer.parseInt(pid),
@@ -92,7 +84,7 @@ public class Totem {
     private String capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        return String.format("%.2f%%", pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        return String.format("%.2f", pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
     }
 
     private String capturaDisco() {

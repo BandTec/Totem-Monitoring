@@ -21,9 +21,9 @@ public class Totem {
     public static final DateTimeFormatter DATA_FORMATADA = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     private final String sistemaOperacional;
-    private String cpu;
-    private String memoria;
-    private String disco;
+    private Double cpu;
+    private Double memoria;
+    private Double disco;
     private String tempo;
     private String processos;
 
@@ -44,8 +44,6 @@ public class Totem {
 
         StringBuilder builder = new StringBuilder();
 
-//        builder.append(String.format("\n%-17s %-20s %-20s %-30s",
-//                "", "PID", "RSS Name", "%CPU", "%MEM"));
         final List<OSProcess> procs;
         procs = Arrays.asList(os.getProcesses(30, ProcessSort.CPU));
 
@@ -56,12 +54,6 @@ public class Totem {
             String name = p.getName();
             String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
             Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
-           
-//            String[] teste = {pid, cpuPorcentagem, memPorcentagem, virtualSize, residentSize, name};;
-//            
-//            for (int count = 0; count < teste.length; count++) {
-//                if(teste[i].length() < 20)
-//            }
     
             builder.append(String.format("\n\t%-5d \t\t%-25s \t%.1f \t\t%.1f ",
                     Integer.parseInt(pid),
@@ -85,39 +77,47 @@ public class Totem {
         this.setTempo(LocalDateTime.now().format(Totem.DATA_FORMATADA));
     }
 
-    private String capturaMemoria(GlobalMemory mem) {
-        return FormatUtil.formatBytes(mem.getAvailable());
+    private Double capturaMemoria(GlobalMemory mem) {
+        return formataDado(FormatUtil.formatBytes(mem.getAvailable()));
     }
 
-    private String capturaCpu(CentralProcessor pro) {
+    private Double capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        return String.format("%.2f%%", pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        
+        return formataDado(String.format("%.2f", pro.getSystemCpuLoadBetweenTicks(ticks) * 100));
     }
 
-    private String capturaDisco() {
+    private Double capturaDisco() {
         long disponivel = 0;
         FileSystem fileSystem = os.getFileSystem();
         OSFileStore[] fsArray = fileSystem.getFileStores();
         for (OSFileStore oSFileStore : fsArray) {
             disponivel += oSFileStore.getUsableSpace();
         }
-        return FormatUtil.formatBytes(disponivel);
+        return formataDado(FormatUtil.formatBytes(disponivel));
+    }
+    
+    private Double formataDado(String dado){
+        Double dadoFormatado;
+        dadoFormatado = Double.valueOf(dado.replaceAll(",", ".").replaceAll("GiB", ""));
+        
+        return dadoFormatado;
     }
 
     public String getSistemaOperacional() {
         return sistemaOperacional;
     }
 
-    public String getCpu() {
+    public Double getCpu() {
         return cpu;
     }
 
-    public String getDisco() {
+    public Double getDisco() {
         return disco;
     }
 
-    public String getMemoria() {
+    public Double getMemoria() {
         return memoria;
     }
 

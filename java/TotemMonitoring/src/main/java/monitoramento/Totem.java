@@ -1,7 +1,6 @@
 package monitoramento;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import oshi.SystemInfo;
@@ -18,13 +17,11 @@ import oshi.util.Util;
 
 public class Totem {
 
-    public static final DateTimeFormatter DATA_FORMATADA = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
     private final String sistemaOperacional;
-    private Double cpu;
+    private Long cpu;
     private Double memoria;
     private Double disco;
-    private String tempo;
+    private LocalDateTime tempo;
     private String processos;
 
     private final SystemInfo si;
@@ -54,7 +51,7 @@ public class Totem {
             String name = p.getName();
             String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
             Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
-    
+
             builder.append(String.format("\n\t%-5d \t\t%-25s \t%.1f \t\t%.1f ",
                     Integer.parseInt(pid),
                     name,
@@ -65,27 +62,35 @@ public class Totem {
     }
 
     public void capturarDados() {
-        this.capturaTempoAtual();
+
+        setTempo(LocalDateTime.now());
+        System.out.println("Captura de Tempo feita com sucesso");
 
         this.cpu = this.capturaCpu(hw.getProcessor());
-        this.memoria = this.capturaMemoria(hw.getMemory());
-        this.disco = this.capturaDisco();
-        this.processos = capturarProcessos(os, hw.getMemory());
-    }
+        System.out.println("Captura de CPU feita com sucesso");
 
-    private void capturaTempoAtual() {
-        this.setTempo(LocalDateTime.now().format(Totem.DATA_FORMATADA));
+        this.memoria = this.capturaMemoria(hw.getMemory());
+        System.out.println("Captura de Memória feita com sucesso");
+
+        this.disco = this.capturaDisco();
+        System.out.println("Captura de Disco feita com sucesso");
+
+        this.processos = capturarProcessos(os, hw.getMemory());
+        System.out.println("Captura de proecessos feita com sucesso");
+        
+        System.out.println("TODOS DADOS CAPTURADOS COM SUCESSO");
     }
 
     private Double capturaMemoria(GlobalMemory mem) {
         return formataDado(FormatUtil.formatBytes(mem.getAvailable()));
     }
 
-    private Double capturaCpu(CentralProcessor pro) {
+    private Long capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        
-        return formataDado(String.format("%.2f", pro.getSystemCpuLoadBetweenTicks(ticks) * 100));
+        Long cpuLong = Math.round(pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
+//        System.out.println("CPU arredondada: " + cpuLong);
+        return cpuLong;
     }
 
     private Double capturaDisco() {
@@ -96,12 +101,23 @@ public class Totem {
             disponivel += oSFileStore.getUsableSpace();
         }
         return formataDado(FormatUtil.formatBytes(disponivel));
+//        return Double.valueOf(FormatUtil.formatBytes(disponivel));
     }
-    
-    private Double formataDado(String dado){
-        Double dadoFormatado;
-        dadoFormatado = Double.valueOf(dado.replaceAll(",", ".").replaceAll("GiB", ""));
-        
+
+    private Double formataDado(String dado) {
+        dado = dado.replaceAll(",", ".");
+        Double dadoFormatado = null;
+        if (dado.contains("GiB")) {
+            System.out.println("GiB encontrado");
+            dado = dado.replace("GiB", "");
+            dadoFormatado = dadoFormatado.valueOf(dado);
+            return dadoFormatado;
+        } else if (dado.contains("MiB")) {
+            dado = dado.replace(" MiB", "");
+            dadoFormatado = dadoFormatado.valueOf(dado);
+            return dadoFormatado;
+        }
+        System.out.println("Deu em nada: " + dado);
         return dadoFormatado;
     }
 
@@ -109,7 +125,7 @@ public class Totem {
         return sistemaOperacional;
     }
 
-    public Double getCpu() {
+    public Long getCpu() {
         return cpu;
     }
 
@@ -121,28 +137,31 @@ public class Totem {
         return memoria;
     }
 
-    public String getTempo() {
+    public LocalDateTime getTempo() {
         return tempo;
-    }
-
-    public HardwareAbstractionLayer getHw() {
-        return hw;
     }
 
     public OperatingSystem getOs() {
         return os;
     }
 
-    public SystemInfo getSi() {
-        return si;
-    }
-
     public String getProcessos() {
         return processos;
     }
 
-    public void setTempo(String tempo) {
-        this.tempo = tempo;
+    public void setCpu(Long cpu) {
+        this.cpu = cpu;
     }
 
+    public void setDisco(Double disco) {
+        this.disco = disco;
+    }
+
+    public void setMemoria(Double memoria) {
+        this.memoria = memoria;
+    }
+
+    public void setTempo(LocalDateTime tempo) {
+        this.tempo = tempo;
+    }
 }

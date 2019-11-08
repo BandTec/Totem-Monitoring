@@ -161,12 +161,22 @@ public class TelaTotem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCapturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturarActionPerformed
+        
         totem.capturarDados();
-
-        lbMemoria.setText(String.format("%.2f%%", totem.getMemoria()));
-        lbCpu.setText(String.format("%.2f%%", totem.getCpu()));
-        lbTempo.setText(totem.getTempo());
+        System.out.println("Captura de dados feita com sucesso");
+        
+        lbCpu.setText(String.format("%s", totem.getCpu()));
+        System.out.println("lbCpu setada com sucesso");
+        
+        lbMemoria.setText(String.format("%s", totem.getMemoria()));
+        System.out.println("lbMemoria setada com sucesso");
         lbDisco.setText(totem.getDisco().toString());
+        
+        System.out.println("lbDisco setada com sucesso");
+        
+        lbTempo.setText(totem.getTempo().toString());
+        System.out.println("lbTempo setada com sucesso");
+        
     }//GEN-LAST:event_btnCapturarActionPerformed
 
     private void btnTrocarTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrocarTelaActionPerformed

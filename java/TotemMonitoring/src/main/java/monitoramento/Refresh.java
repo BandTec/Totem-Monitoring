@@ -1,37 +1,27 @@
 package monitoramento;
 
+import controladores.Exibicao;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Refresh {
 
-    Timer timer;
+    Exibicao exibicao;
+    Totem totem;
 
-    public Refresh(int tempo) {
-        timer = new Timer();
-        timer.scheduleAtFixedRate(task, 0, 5000);
-
+    public Refresh(TelaTotem tela) {
+        exibicao = new Exibicao(tela);
+        totem = new Totem();
     }
 
-    TimerTask task = new TimerTask() {
-        Totem totem = new Totem();
-
-        @Override
-        public void run() {
-            System.out.println("Esta merda");
-            totem.capturarDados();
-            System.out.println(totem.getProcessos());
-        }
-    };
-//    class RemindTask extends TimerTask {
-//        public void run() {
-//            System.out.println("Time's up!");
-//            timer.cancel(); //Terminate the timer thread
-//        }
-//    }
-
-    public static void main(String args[]) {
-        new Refresh(5);
-        System.out.println("Task scheduled.");
+    public void iniciar() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                exibicao.mostrarDados();
+            }
+        },0,5000);
     }
+
 }

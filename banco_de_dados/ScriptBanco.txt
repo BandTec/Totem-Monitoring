@@ -46,7 +46,8 @@ foreign key(fk_dados) references tb_dados(id_dados)
 );
 
 create table tb_processos(
-pid int primary key identity(1,1),
+id_processo int primary key identity(1,1),
+pid int,
 fk_totem int foreign key references tb_totem (id_totem),
 qtd_cpu decimal(5,2),
 qtd_memoria decimal(5,2),

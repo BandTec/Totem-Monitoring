@@ -1,7 +1,6 @@
 package monitoramento;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import oshi.SystemInfo;
@@ -16,19 +15,13 @@ import oshi.software.os.OperatingSystem.ProcessSort;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
-/**
- *
- * @author Massaru
- */
 public class Totem {
 
-    public static final DateTimeFormatter DATA_FORMATADA = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
     private final String sistemaOperacional;
-    private String cpu;
-    private String memoria;
-    private String disco;
-    private String tempo;
+    private Long cpu;
+    private Double memoria;
+    private Double disco;
+    private LocalDateTime tempo;
     private String processos;
 
     private final SystemInfo si;
@@ -48,8 +41,6 @@ public class Totem {
 
         StringBuilder builder = new StringBuilder();
 
-//        builder.append(String.format("\n%-17s %-20s %-20s %-20s %-20s %-30s",
-//                "", "PID", "%CPU", "%MEM", "VSZ", "RSS Name"));
         final List<OSProcess> procs;
         procs = Arrays.asList(os.getProcesses(30, ProcessSort.CPU));
 
@@ -57,100 +48,120 @@ public class Totem {
             final OSProcess p = procs.get(i);
 
             String pid = String.valueOf(p.getProcessID());
+            String name = p.getName();
             String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
             Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
-            String virtualSize = FormatUtil.formatBytes(p.getVirtualSize());
-            String residentSize = FormatUtil.formatBytes(p.getResidentSetSize());
-            String name = p.getName();
-//            String[] teste = {pid, cpuPorcentagem, memPorcentagem, virtualSize, residentSize, name};;
-//            
-//            for (int count = 0; count < teste.length; count++) {
-//                if(teste[i].length() < 20)
-//            }
 
-            builder.append(String.format("\n%20s %20s %20.1f %-20s %-20s %10s",
-                    pid,
-                    cpuPorcentagem,
-                    memPorcentagem,
-                    virtualSize,
-                    residentSize,
-                    name));
+            builder.append(String.format("\n\t%-5d \t\t%-25s \t%.1f \t\t%.1f ",
+                    Integer.parseInt(pid),
+                    name,
+                    Double.parseDouble(cpuPorcentagem),
+                    memPorcentagem));
         }
         return builder.toString();
     }
 
     public void capturarDados() {
-        this.capturaTempoAtual();
+
+        setTempo(LocalDateTime.now());
+        System.out.println("Captura de Tempo feita com sucesso");
 
         this.cpu = this.capturaCpu(hw.getProcessor());
+        System.out.println("Captura de CPU feita com sucesso");
+
         this.memoria = this.capturaMemoria(hw.getMemory());
+        System.out.println("Captura de Memória feita com sucesso");
+
         this.disco = this.capturaDisco();
+        System.out.println("Captura de Disco feita com sucesso");
 
         this.processos = capturarProcessos(os, hw.getMemory());
+        System.out.println("Captura de proecessos feita com sucesso");
+        
+        System.out.println("TODOS DADOS CAPTURADOS COM SUCESSO");
     }
 
-    private void capturaTempoAtual() {
-        this.setTempo(LocalDateTime.now().format(Totem.DATA_FORMATADA));
+    private Double capturaMemoria(GlobalMemory mem) {
+        return formataDado(FormatUtil.formatBytes(mem.getAvailable()));
     }
 
-    private String capturaMemoria(GlobalMemory mem) {
-        return FormatUtil.formatBytes(mem.getAvailable());
-    }
-
-    private String capturaCpu(CentralProcessor pro) {
+    private Long capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        return String.format("%.2f%%", pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        Long cpuLong = Math.round(pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
+//        System.out.println("CPU arredondada: " + cpuLong);
+        return cpuLong;
     }
 
-    private String capturaDisco() {
+    private Double capturaDisco() {
         long disponivel = 0;
         FileSystem fileSystem = os.getFileSystem();
         OSFileStore[] fsArray = fileSystem.getFileStores();
         for (OSFileStore oSFileStore : fsArray) {
             disponivel += oSFileStore.getUsableSpace();
         }
-        return FormatUtil.formatBytes(disponivel);
+        return formataDado(FormatUtil.formatBytes(disponivel));
+//        return Double.valueOf(FormatUtil.formatBytes(disponivel));
+    }
+
+    private Double formataDado(String dado) {
+        dado = dado.replaceAll(",", ".");
+        Double dadoFormatado = null;
+        if (dado.contains("GiB")) {
+            System.out.println("GiB encontrado");
+            dado = dado.replace("GiB", "");
+            dadoFormatado = dadoFormatado.valueOf(dado);
+            return dadoFormatado;
+        } else if (dado.contains("MiB")) {
+            dado = dado.replace(" MiB", "");
+            dadoFormatado = dadoFormatado.valueOf(dado);
+            return dadoFormatado;
+        }
+        System.out.println("Deu em nada: " + dado);
+        return dadoFormatado;
     }
 
     public String getSistemaOperacional() {
         return sistemaOperacional;
     }
 
-    public String getCpu() {
+    public Long getCpu() {
         return cpu;
     }
 
-    public String getDisco() {
+    public Double getDisco() {
         return disco;
     }
 
-    public String getMemoria() {
+    public Double getMemoria() {
         return memoria;
     }
 
-    public String getTempo() {
+    public LocalDateTime getTempo() {
         return tempo;
-    }
-
-    public HardwareAbstractionLayer getHw() {
-        return hw;
     }
 
     public OperatingSystem getOs() {
         return os;
     }
 
-    public SystemInfo getSi() {
-        return si;
-    }
-
     public String getProcessos() {
         return processos;
     }
 
-    public void setTempo(String tempo) {
-        this.tempo = tempo;
+    public void setCpu(Long cpu) {
+        this.cpu = cpu;
     }
 
+    public void setDisco(Double disco) {
+        this.disco = disco;
+    }
+
+    public void setMemoria(Double memoria) {
+        this.memoria = memoria;
+    }
+
+    public void setTempo(LocalDateTime tempo) {
+        this.tempo = tempo;
+    }
 }

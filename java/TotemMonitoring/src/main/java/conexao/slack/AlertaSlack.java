@@ -28,7 +28,7 @@ public class AlertaSlack {
             connection.setDoOutput(true);
             DataOutputStream post = new DataOutputStream(connection.getOutputStream());
             post.writeBytes(String.format("{ 'attachments': [{'text':'oioioi', 'color':'#000000',"
-                    + "'pretext':'Erro!', 'footer':'Massao Gayzasso', 'ts':''}] }"));
+                    + "'pretext':'Erro!', 'footer':'Massao', 'ts':''}] }"));
             post.flush();
             post.close();
             

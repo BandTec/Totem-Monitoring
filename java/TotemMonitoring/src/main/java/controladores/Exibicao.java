@@ -1,5 +1,6 @@
 package controladores;
 
+import com.mycompany.totemmonitoring.TelaProcessos;
 import monitoramento.TelaTotem;
 import monitoramento.Totem;
 
@@ -9,18 +10,24 @@ import monitoramento.Totem;
  */
 public class Exibicao {
 
-    TelaTotem tela;
+    TelaTotem telaTotem;
+//    TelaProcessos telaProcessos;
     Totem totem = new Totem();
 
-    public Exibicao(TelaTotem tela) {
-        this.tela = tela;
+    public Exibicao(TelaTotem telaTotem) {
+        this.telaTotem = telaTotem;
     }
     
+//    public Exibicao(TelaProcessos telaProcessos) {
+//        this.telaProcessos = telaProcessos;
+//    }
+//    
     public void mostrarDados() {
         totem.capturarDados();
-        tela.getLbCpu().setText(totem.getCpu());
-        tela.getLbDisco().setText(totem.getDisco());
-        tela.getLbMemoria().setText(totem.getMemoria());
-        tela.getLbTempo().setText(totem.getTempo());
+        telaTotem.getLbCpu().setText(totem.getCpu());
+        telaTotem.getLbDisco().setText(totem.getDisco());
+        telaTotem.getLbMemoria().setText(totem.getMemoria());
+        telaTotem.getLbTempo().setText(totem.getTempo());
+//        telaProcessos.getTextProcessos().setText(totem.getProcessos());
     }
 }

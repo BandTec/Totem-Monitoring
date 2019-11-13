@@ -1,16 +1,15 @@
 package com.mycompany.totemmonitoring;
 
+import javax.swing.JTextArea;
 import monitoramento.Refresh;
-import monitoramento.Totem;
+import monitoramento.RefreshProcesso;
 
 public class TelaProcessos extends javax.swing.JFrame {
 
-    Totem totem;
-    Refresh tempo;
-
     public TelaProcessos() {
-        totem = new Totem();
         initComponents();
+        RefreshProcesso refresh = new RefreshProcesso(this);
+        refresh.iniciar();
 
     }
 
@@ -25,7 +24,6 @@ public class TelaProcessos extends javax.swing.JFrame {
         lblPid1 = new javax.swing.JLabel();
         lblPid2 = new javax.swing.JLabel();
         lblPid4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -54,13 +52,6 @@ public class TelaProcessos extends javax.swing.JFrame {
         lblPid4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         lblPid4.setText("Name");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,13 +71,8 @@ public class TelaProcessos extends javax.swing.JFrame {
                 .addComponent(lbProcessos)
                 .addGap(335, 335, 335))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(jButton1)))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,18 +88,11 @@ public class TelaProcessos extends javax.swing.JFrame {
                     .addComponent(lblPid2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(19, 19, 19))
+                .addGap(67, 67, 67))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new Refresh(0);
-        textProcessos.setText(totem.getProcessos());
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -125,7 +104,6 @@ public class TelaProcessos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbProcessos;
     private javax.swing.JLabel lblPid;
@@ -134,4 +112,9 @@ public class TelaProcessos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPid4;
     private javax.swing.JTextArea textProcessos;
     // End of variables declaration//GEN-END:variables
+
+    public JTextArea getTextProcessos() {
+        return textProcessos;
+    }
+
 }

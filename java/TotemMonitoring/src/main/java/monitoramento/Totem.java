@@ -15,7 +15,6 @@ import oshi.software.os.OperatingSystem.ProcessSort;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
-
 public class Totem {
 
     private final String sistemaOperacional;
@@ -37,7 +36,6 @@ public class Totem {
 
         sistemaOperacional = hw.getComputerSystem().toString();
     }
-    
 
     private String capturarProcessos(final OperatingSystem os, final GlobalMemory memory) {
 
@@ -53,6 +51,7 @@ public class Totem {
             String name = p.getName();
             String cpuPorcentagem = String.valueOf(100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime()).substring(0, 7);
             Double memPorcentagem = 100d * p.getResidentSetSize() / memory.getTotal();
+
             builder.append(String.format("\n\t%-5d \t\t%-25s \t%.1f \t\t%.1f ",
                     Integer.parseInt(pid),
                     name,

@@ -1,5 +1,6 @@
 package conexao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import monitoramento.Totem;
@@ -9,17 +10,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author Massarusao
  */
-public class TesteConexao {
+public class Conexao {
 
     private JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
-        TesteConexao testeConec = new TesteConexao();
+        Conexao testeConec = new Conexao();
         System.out.println(testeConec.selecionarTudo("tb_totem"));
-        testeConec.inserirDados();
     }
 
-    public TesteConexao() {
+    public Conexao() {
         ConexaoVO conec = new ConexaoVO();
         conec.criarConexao();
         jdbcTemplate = new JdbcTemplate(conec.getDataSource());
@@ -34,14 +34,15 @@ public class TesteConexao {
         return lista;
     }
 
-    public void inserirDados() {
-        Totem totem = new Totem();
-        totem.capturarDados();
-
-        jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, "
-                + "dd_tempo, fk_totem) values (?,?,?,?,?)", totem.getCpu(),
-                totem.getMemoria(),
-                totem.getDisco(),
-                totem.getTempo(), 2);
+    public void inserirDadosHW(Double cpu, Double memoria, Double disco) {
+        System.out.println("ENTROU");
+        String cpuHelp = String.format("%.2f", cpu);
+        cpuHelp = cpuHelp.replace(",", ".");
+        jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, dd_tempo, fk_totem) values (?,?,?,?,?)",
+                Double.valueOf(cpuHelp),
+                memoria,
+                disco,
+                LocalDateTime.now(),
+                2);
     }
 }

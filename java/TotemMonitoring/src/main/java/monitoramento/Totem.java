@@ -1,5 +1,6 @@
 package monitoramento;
 
+import conexao.Conexao;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,7 @@ import oshi.util.Util;
 public class Totem {
 
     private final String sistemaOperacional;
-    private Long cpu;
+    private Double cpu;
     private Double memoria;
     private Double disco;
     private LocalDateTime tempo;
@@ -27,12 +28,16 @@ public class Totem {
     private final SystemInfo si;
     private final HardwareAbstractionLayer hw;
     private final OperatingSystem os;
-
+    
+    private Conexao conexao;
+    
     public Totem() {
         si = new SystemInfo();
 
         hw = si.getHardware();
         os = si.getOperatingSystem();
+        
+        conexao = new Conexao();
 
         sistemaOperacional = hw.getComputerSystem().toString();
     }
@@ -85,12 +90,12 @@ public class Totem {
         return formataDado(FormatUtil.formatBytes(mem.getAvailable()));
     }
 
-    private Long capturaCpu(CentralProcessor pro) {
+    private Double capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        Long cpuLong = Math.round(pro.getSystemCpuLoadBetweenTicks(ticks) * 100);
+        
 //        System.out.println("CPU arredondada: " + cpuLong);
-        return cpuLong;
+        return pro.getSystemCpuLoadBetweenTicks(ticks) * 100;
     }
 
     private Double capturaDisco() {
@@ -125,7 +130,7 @@ public class Totem {
         return sistemaOperacional;
     }
 
-    public Long getCpu() {
+    public Double getCpu() {
         return cpu;
     }
 
@@ -149,7 +154,7 @@ public class Totem {
         return processos;
     }
 
-    public void setCpu(Long cpu) {
+    public void setCpu(Double cpu) {
         this.cpu = cpu;
     }
 

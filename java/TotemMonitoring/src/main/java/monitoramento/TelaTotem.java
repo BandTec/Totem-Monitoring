@@ -1,6 +1,10 @@
 package monitoramento;
 
 import javax.swing.JLabel;
+import com.mycompany.totemmonitoring.TelaProcessos;
+import java.time.LocalDateTime;
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
+import java.time.format.FormatStyle;
 
 /**
  *
@@ -34,6 +38,7 @@ public class TelaTotem extends javax.swing.JFrame {
         lbSistemaOperacional = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lbTempo = new javax.swing.JLabel();
+        btnTrocarTela = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +75,14 @@ public class TelaTotem extends javax.swing.JFrame {
         lbTempo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lbTempo.setText("---");
 
+        btnTrocarTela.setBackground(new java.awt.Color(0, 255, 255));
+        btnTrocarTela.setText("Vizualizar processos");
+        btnTrocarTela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrocarTelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +114,11 @@ public class TelaTotem extends javax.swing.JFrame {
                         .addGap(163, 163, 163)
                         .addComponent(jLabel1)))
                 .addContainerGap(227, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(btnTrocarTela)
+                .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,11 +145,21 @@ public class TelaTotem extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lbSistemaOperacional))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTrocarTela))
+                .addContainerGap())
+
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTrocarTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrocarTelaActionPerformed
+        this.dispose();
+        TelaProcessos tela = new TelaProcessos();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnTrocarTelaActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -143,6 +171,8 @@ public class TelaTotem extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    private javax.swing.JButton btnTrocarTela;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

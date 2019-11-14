@@ -1,4 +1,4 @@
-package conexao;
+package conexao.banco;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

@@ -1,6 +1,6 @@
 package monitoramento;
 
-import conexao.Conexao;
+import conexao.banco.Conexao;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;

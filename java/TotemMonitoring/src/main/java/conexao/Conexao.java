@@ -38,11 +38,12 @@ public class Conexao {
         System.out.println("ENTROU");
         String cpuHelp = String.format("%.2f", cpu);
         cpuHelp = cpuHelp.replace(",", ".");
-        jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, dd_tempo, fk_totem) values (?,?,?,?,?)",
+        jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, dd_tempo, status_totem, fk_totem) values (?,?,?,?,?,?)",
                 Double.valueOf(cpuHelp),
                 memoria,
                 disco,
                 LocalDateTime.now(),
+                1,
                 2);
     }
 }

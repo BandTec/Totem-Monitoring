@@ -24,6 +24,7 @@ public class Totem {
     private Double disco;
     private LocalDateTime tempo;
     private String processos;
+    private Integer qtdProcessos;
 
     private final SystemInfo si;
     private final HardwareAbstractionLayer hw;
@@ -62,6 +63,8 @@ public class Totem {
                     name,
                     Double.parseDouble(cpuPorcentagem),
                     memPorcentagem));
+            
+            qtdProcessos = os.getProcessCount();
         }
         return builder.toString();
     }
@@ -169,4 +172,9 @@ public class Totem {
     public void setTempo(LocalDateTime tempo) {
         this.tempo = tempo;
     }
+
+    public Integer getQtdProcessos() {
+        return qtdProcessos;
+    }
+    
 }

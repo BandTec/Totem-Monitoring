@@ -1,6 +1,5 @@
 package monitoramento;
 
-import com.mycompany.totemmonitoring.TelaProcessos;
 import controladores.Exibicao;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,11 +14,6 @@ public class Refresh {
         totem = new Totem();
     }
     
-//    public Refresh(TelaProcessos tela) {
-//        exibicao = new Exibicao(tela);
-//        totem = new Totem();
-//    }
-
     public void iniciar() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

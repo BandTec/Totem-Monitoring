@@ -9,7 +9,7 @@ import java.net.URL;
  *
  * @author Aluno
  */
-public final class AlertaSlack {
+public class AlertaSlack {
 
     Double cpu, memoria, disco;
 
@@ -17,16 +17,23 @@ public final class AlertaSlack {
         this.cpu = cpu;
         this.memoria = memoria;
         this.disco = disco;
-        enviarAlerta();
+        verificarParams();
+    }
+    
+    private void verificarParams() {
+        if (memoria > 1) {
+            System.out.println("ENTROU NO VERIFICARPARAMNS");
+            enviarAlerta("Sua memoria esta cagada");
+        }
     }
 
-    private void enviarAlerta() {
+    private void enviarAlerta(String message) {
         try {
             String json = String.format("{ 'attachments': [{'text':'%s',"
                     + " 'color':'#ff9104',"
                     + "'pretext':'Cuidado!',"
                     + " 'footer':'Massao',"
-                    + " 'ts':''}] }", verificarParams());
+                    + " 'ts':''}] }", message);
 
             URL url = new URL("https://hooks.slack.com/services/TPX0T3M7V/"
                     + "BPYUG1SD8/nByEfYcywKkEDLQGMuqjnUPL");
@@ -50,14 +57,4 @@ public final class AlertaSlack {
             System.out.println(ioe.getMessage());
         }
     }
-
-    private String verificarParams() {
-        String message = "";
-        if (memoria > 1) {
-            System.out.println("ENTROU NO VERIFICARPARAMNS");
-            message = "Sua memoria esta cagada";
-        }
-        return message;
-    }
-
 }

@@ -68,14 +68,13 @@
                 </li>
                 <li><a><i class="fa fa-group"></i> Gerenciamento <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="projects.html">Usuários</a></li>
+                    <li><a href="gerenciamento.html">Usuários</a></li>
                   </ul>
                 </li>
               </ul>
             </div>
           </div>
           <!-- /sidebar menu -->
-
         </div>
       </div>
 
@@ -105,6 +104,14 @@
       </div>
       <!-- /top navigation -->
 
+      <!-- form -->
+      <div class="none">
+        <form id="formulario_buscar">
+          <input type="text" id="fk" value="" name="fk">
+        </form>
+      </div>
+      <!-- /form -->
+
       <!-- page content -->
       <div class="right_col" role="main">
         <div class="">
@@ -113,11 +120,18 @@
               <h3>Colaboradores <small>Lista de Colaboradores</small></h3>
             </div>
             <div class="title_right">
-                <div class="input-group">
+              <div class="input-group">
               </div>
-              <div class="col-md-4 col-sm-5 col-xs-12 form-group pull-right top_search">
+              <div class="col-md-3 col-sm-5 col-xs-12 form-group pull-right top_search">
                 <span class="input-group-btn">
-                  <a class="btn btn-success" href="cadastro_usuario.html"><i class="fa fa-plus "></i> Adicionar usuários </a>
+                  <a class="btn btn-success" href="cadastro_usuario.html"><i class="fa fa-plus "></i> Adicionar usuários
+                  </a>
+                </span>
+              </div>
+              <div class="col-md-2 col-sm-5 col-xs-12 form-group pull-right">
+                <span class="input-group-btn">
+                  <button id="sendMessageButton" type="button" class="btn btn-success" style="color: white"
+                    onclick="buscarUsuarios()">Atualizar</button>
                 </span>
               </div>
             </div>
@@ -148,48 +162,10 @@
                         <th style="width: 25%">Opções</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>#</td>
-                        <td>
-                          <a>VICTOR MASSAO</a>
-                          <br>
-                        </td>
-                        <td class="project_progress">
-                          <a>XXXXXXXXXX</a>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-success btn-xs"> ATIVO </button>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-male"></i> Ativar </a>
-                          <a href="#" class="btn btn-xs btn-xs" style="background-color: orange"><i class="fa fa-remove "></i> Desativar </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#</td>
-                        <td>
-                          <a>VITÓRIA CRISTINA</a>
-                          <br>
-                        </td>
-                        <td class="project_progress">
-                              <a>XXXXXXXXXX</a>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-success btn-xs">ATIVO</button>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-male"></i> Ativar </a>
-                          <a href="#" class="btn btn-xs btn-xs" style="background-color: orange"><i class="fa fa-remove "></i> Desativar </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </a>
-                        </td>
-                        </td>
-                      </tr>
+                    <tbody id="body_table">
                     </tbody>
                   </table>
                   <!-- end project list -->
-
                 </div>
               </div>
             </div>
@@ -226,6 +202,10 @@
 <script>
   nome_do_usuario.innerHTML = name;
   nome_drop.innerHTML = name;
+
+  if(sessionStorage.body != undefined){
+    body_table.innerHTML = sessionStorage.body
+  }
 </script>
 
 </html>

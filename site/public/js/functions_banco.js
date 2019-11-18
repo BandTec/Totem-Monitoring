@@ -2,7 +2,7 @@ function verificarAutenticacao() {
   if (sessionStorage.usuario == undefined) {
     window.location.href = '/login.html';
     alert('Você deve estar autenticado');
-  }else{
+  } else {
     if (sessionStorage.ativo == 'true') {
       window.location.href = '/dashs/production/index.html';
     }
@@ -66,6 +66,106 @@ function cadastrarUsuario() {
       console.log('Erro de cadastro!');
       end_wait();
     }
+  });
+
+  return false;
+}
+
+function buscarUsuarios() {
+
+  wait();
+  fk.value = sessionStorage.aeroporto;
+  var formulario = new URLSearchParams(new FormData(formulario_buscar));
+  body_table.innerHTML = "";
+
+  fetch('../../usuarios/users', {
+    method: "POST",
+    body: formulario
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        for (let i = 0; i < resposta.length; i++) {
+          var status = '';
+
+          if (resposta[i].ativo) {
+            status = 'ATIVO';
+
+            body_table.innerHTML += `<tr>
+            <td>${i + 1}</td>
+            <td>
+              <a>${resposta[i].nome}</a>
+              <br>
+              </td>
+              <td class="project_progress">
+                <a>${resposta[i].cpf_user}</a>
+              </td>
+              <td>
+                <span class="label-success btn-xs" style="color: white"> ${status} </span>
+              </td>
+              <td>
+                <button type="button" onclick="deletarUsuario(${resposta[i].id_user})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </button>
+                <button type="button" onclick="alterarStatus(${resposta[i].id_user}, 0)" class="btn btn-xs btn-xs" style="background-color: orange"><i
+                class="fa fa-remove "></i> Desativar </button>
+              </td>
+           </tr>`;
+
+          } else {
+            status = 'INATIVO'
+
+            body_table.innerHTML += `<tr>
+            <td>${i + 1}</td>
+            <td>
+              <a>${resposta[i].nome}</a>
+              <br>
+              </td>
+              <td class="project_progress">
+                <a>${resposta[i].cpf_user}</a>
+              </td>
+              <td>
+                <span class="label-danger btn-xs" style="color: white"> ${status} </span>
+              </td>
+              <td>
+                <button type="button" onclick="deletarUsuario(${resposta[i].id_user})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </button>
+                <button type="button" onclick="alterarStatus(${resposta[i].id_user}, 1)" class="btn btn-info btn-xs" ><i class="fa fa-male"></i> Ativar </button>
+              </td>
+           </tr>`;
+          }
+        }
+        sessionStorage.body = body_table.innerHTML;
+        end_wait();
+      });
+    } else {
+      console.log('Errossss!');
+      end_wait();
+    }
+  });
+
+  return false;
+}
+
+function alterarStatus(id_usuario, status) {
+  var params = new URLSearchParams( { 'user' : id_usuario, 'status': status });
+  $('.btn-xs').prop('disabled', true)
+
+  fetch('../../usuarios/inativar_user', {
+    method: "POST",
+    body: params
+  }).then(function (response) {
+    buscarUsuarios();
+  });
+
+  return false;
+}
+
+function deletarUsuario(id_usuario) {
+  var params = new URLSearchParams( { 'user' : id_usuario });
+  $('.btn-xs').prop('disabled', true)
+
+  fetch('../../usuarios/deletar_user', {
+    method: "POST",
+    body: params
+  }).then(function (response) {
+    buscarUsuarios();
   });
 
   return false;

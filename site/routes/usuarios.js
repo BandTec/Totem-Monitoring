@@ -75,22 +75,31 @@ router.post('/cadastro_usuario', function (req, res, next) {
 
 });
 
-router.post('/inativar_user', function (req, res, next) {
+router.post('/users', function (req, res, next) {
 
   banco.conectar().then(() => {
-    console.log(`Chegou p/ Cadastro: ${JSON.stringify(req.body)}`);
+    console.log(`Chegou p/ busca: ${JSON.stringify(req.body)}`);
 
-    if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
-      throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
+    var fk_aero = req.body.fk;
+
+    if (fk_aero == undefined) {
+      throw new Error(`O SessionStorage não está funcionando: ${fk_aero}`);
+    } else {
+      return banco.sql.query(`select * from tb_user where fk_aeroporto = ${fk_aero}`)
     }
-    return banco.sql.query(`select * tb_user`)
   }).then(consulta => {
 
-    console.log('Usuário cadastrado');
+    console.log(`Usuários encontrados: ${JSON.stringify(consulta.recordset)}`);
+
+    if (consulta.recordset.length >= 1) {
+      res.send(consulta.recordset);
+    } else {
+      res.sendStatus(404);
+    }
 
   }).catch(err => {
 
-    var erro = `Erro no cadastro: ${err}`;
+    var erro = `Erro na busca dos usuários: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
 
@@ -100,32 +109,59 @@ router.post('/inativar_user', function (req, res, next) {
 
 });
 
-router.post('/users', function (req, res, next) {
+router.post('/inativar_user', function (req, res, next) {
 
   banco.conectar().then(() => {
+    var id_usuario = req.body.user;
+    var status = req.body.status;
+    console.log(JSON.stringify(req.body));
 
-    if (nome == undefined || email == undefined || cpf == undefined || senha == undefined) {
-      throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha}`);
+    if (id_usuario == undefined) {
+      throw new Error(`Algo de errado não está certo: ${id_usuario}`);
+    } else {
+      return banco.sql.query(`update tb_user set ativo=${status} where id_user = ${id_usuario}`)
     }
-    return banco.sql.query(`select * tb_user where fk_funcionario = ${id}`)
   }).then(consulta => {
 
-    if (consulta.recordset.length == 1) {
-      res.send(consulta.recordset[0]);
-    } else {
-      res.sendStatus(404);
-    }
+    console.log('Update feito');
+    res.send(true);
 
   }).catch(err => {
 
-    var erro = `Erro no cadastro: ${err}`;
+    var erro = `Erro na atualização: ${err}`;
     console.error(erro);
     res.status(500).send(erro);
 
   }).finally(() => {
     banco.sql.close();
   });
+});
 
+router.post('/deletar_user', function (req, res, next) {
+
+  banco.conectar().then(() => {
+    var id_usuario = req.body.user;
+    console.log(JSON.stringify(req.body));
+
+    if (id_usuario == undefined) {
+      throw new Error(`Algo de errado não está certo: ${id_usuario}`);
+    } else {
+      return banco.sql.query(`delete from tb_user where id_user = ${id_usuario}`)
+    }
+  }).then(consulta => {
+
+    console.log('Conta deletada');
+    res.send(true);
+
+  }).catch(err => {
+
+    var error = `Erro no update: ${err}`;
+    console.log(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
 });
 
 module.exports = router;

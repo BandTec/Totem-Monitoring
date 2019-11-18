@@ -5,6 +5,9 @@
  */
 package com.mycompany.totemmonitoring;
 
+import javax.swing.JTextArea;
+import monitoramento.RefreshProcesso;
+import monitoramento.TelaTotem;
 import monitoramento.Totem;
 
 /**
@@ -13,13 +16,13 @@ import monitoramento.Totem;
  */
 public class TelaProcessos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaProcessos
-     */
     public TelaProcessos() {
         initComponents();
+        RefreshProcesso refresh = new RefreshProcesso(this);
+        refresh.iniciar();
+
     }
-    
+
     Totem totem = new Totem();
 
     /**
@@ -34,50 +37,46 @@ public class TelaProcessos extends javax.swing.JFrame {
         lbProcessos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textProcessos = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         lblPid = new javax.swing.JLabel();
         lblPid1 = new javax.swing.JLabel();
         lblPid2 = new javax.swing.JLabel();
-        lblPid3 = new javax.swing.JLabel();
         lblPid4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        lbProcessos.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lbProcessos.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
         lbProcessos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbProcessos.setText("Processos");
         lbProcessos.setToolTipText("");
 
         textProcessos.setColumns(20);
-        textProcessos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        textProcessos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         textProcessos.setRows(5);
         textProcessos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         textProcessos.setEnabled(false);
         jScrollPane1.setViewportView(textProcessos);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        lblPid.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        lblPid.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         lblPid.setText("PID");
 
-        lblPid1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        lblPid1.setText("%CPU");
+        lblPid1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        lblPid1.setText("CPU(%)");
 
-        lblPid2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        lblPid2.setText("%MEM");
+        lblPid2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        lblPid2.setText("MEM(%)");
 
-        lblPid3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        lblPid3.setText("VSZ");
-
-        lblPid4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        lblPid4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         lblPid4.setText("Name");
+
+        jButton2.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jButton2.setText("Vizualizar Hardware");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,59 +84,62 @@ public class TelaProcessos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(335, Short.MAX_VALUE)
-                .addComponent(lbProcessos)
-                .addGap(335, 335, 335))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 786, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblPid2)
+                                .addGap(81, 81, 81))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(363, 363, 363)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(lblPid)
-                        .addGap(82, 82, 82)
-                        .addComponent(lblPid1)
-                        .addGap(98, 98, 98)
-                        .addComponent(lblPid2)
-                        .addGap(95, 95, 95)
-                        .addComponent(lblPid3)
-                        .addGap(96, 96, 96)
-                        .addComponent(lblPid4)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 181, Short.MAX_VALUE)
+                                .addComponent(lblPid)
+                                .addGap(172, 172, 172)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblPid4)
+                                        .addGap(153, 153, 153)
+                                        .addComponent(lblPid1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lbProcessos)
+                                        .addGap(28, 28, 28)))
+                                .addGap(0, 290, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPid)
-                        .addComponent(lblPid1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPid2)
-                        .addComponent(lblPid3)
-                        .addComponent(lblPid4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPid4)
+                    .addComponent(lblPid)
+                    .addComponent(lblPid1)
+                    .addComponent(lblPid2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                .addContainerGap(159, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        totem.capturarDados();
-        
-        textProcessos.setText(totem.getProcessos());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        TelaTotem tela = new TelaTotem();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,7 +148,7 @@ public class TelaProcessos extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -175,14 +177,18 @@ public class TelaProcessos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbProcessos;
     private javax.swing.JLabel lblPid;
     private javax.swing.JLabel lblPid1;
     private javax.swing.JLabel lblPid2;
-    private javax.swing.JLabel lblPid3;
     private javax.swing.JLabel lblPid4;
     private javax.swing.JTextArea textProcessos;
     // End of variables declaration//GEN-END:variables
+
+    public JTextArea getTextProcessos() {
+        return textProcessos;
+    }
+
 }

@@ -112,14 +112,20 @@ router.post('/users', function (req, res, next) {
 router.post('/inativar_user', function (req, res, next) {
 
   banco.conectar().then(() => {
-    var id = req.body.user_id
-    console.log(req.body)
+    var id_usuario = req.body.user;
+    var status = req.body.status;
+    console.log(JSON.stringify(req.body));
 
-    if (id == undefined) {
-      throw new Error(`Algo de errado não está certo: ${id}`);
+    if (id_usuario == undefined) {
+      throw new Error(`Algo de errado não está certo: ${id_usuario}`);
     } else {
-      return banco.sql.query(`update tb_user set ativo=0 where id_user = "${id}"`)
+      return banco.sql.query(`update tb_user set ativo=${status} where id_user = ${id_usuario}`)
     }
+  }).then(consulta => {
+
+    console.log('Update feito');
+    res.send(true);
+
   }).catch(err => {
 
     var erro = `Erro na atualização: ${err}`;
@@ -129,7 +135,33 @@ router.post('/inativar_user', function (req, res, next) {
   }).finally(() => {
     banco.sql.close();
   });
+});
 
+router.post('/deletar_user', function (req, res, next) {
+
+  banco.conectar().then(() => {
+    var id_usuario = req.body.user;
+    console.log(JSON.stringify(req.body));
+
+    if (id_usuario == undefined) {
+      throw new Error(`Algo de errado não está certo: ${id_usuario}`);
+    } else {
+      return banco.sql.query(`delete from tb_user where id_user = ${id_usuario}`)
+    }
+  }).then(consulta => {
+
+    console.log('Conta deletada');
+    res.send(true);
+
+  }).catch(err => {
+
+    var error = `Erro no update: ${err}`;
+    console.log(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
 });
 
 module.exports = router;

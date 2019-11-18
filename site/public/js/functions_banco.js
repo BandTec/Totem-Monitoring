@@ -89,6 +89,7 @@ function buscarUsuarios() {
 
           if (resposta[i].ativo) {
             status = 'ATIVO';
+
             body_table.innerHTML += `<tr>
             <td>${i + 1}</td>
             <td>
@@ -99,11 +100,11 @@ function buscarUsuarios() {
                 <a>${resposta[i].cpf_user}</a>
               </td>
               <td>
-                <span class="btn-success btn-xs"> ${status} </span>
+                <span class="label-success btn-xs" style="color: white"> ${status} </span>
               </td>
               <td>
-                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </a>
-                <button type="button" onclick="inativarUsuario(${resposta[i].id_user})" class="btn btn-xs btn-xs" style="background-color: orange"><i
+                <button type="button" onclick="deletarUsuario(${resposta[i].id_user})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </button>
+                <button type="button" onclick="alterarStatus(${resposta[i].id_user}, 0)" class="btn btn-xs btn-xs" style="background-color: orange"><i
                 class="fa fa-remove "></i> Desativar </button>
               </td>
            </tr>`;
@@ -121,11 +122,11 @@ function buscarUsuarios() {
                 <a>${resposta[i].cpf_user}</a>
               </td>
               <td>
-                <span class="btn-success btn-xs"> ${status} </span>
+                <span class="label-danger btn-xs" style="color: white"> ${status} </span>
               </td>
               <td>
-                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </a>
-                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-male"></i> Ativar </a>
+                <button type="button" onclick="deletarUsuario(${resposta[i].id_user})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </button>
+                <button type="button" onclick="alterarStatus(${resposta[i].id_user}, 1)" class="btn btn-info btn-xs" ><i class="fa fa-male"></i> Ativar </button>
               </td>
            </tr>`;
           }
@@ -142,24 +143,38 @@ function buscarUsuarios() {
   return false;
 }
 
+function alterarStatus(id_usuario, status) {
+  var params = new URLSearchParams( { 'user' : id_usuario, 'status': status });
+  $('.btn-xs').prop('disabled', true)
+
+  fetch('../../usuarios/inativar_user', {
+    method: "POST",
+    body: params
+  }).then(function (response) {
+    buscarUsuarios();
+  });
+
+  return false;
+}
+
+function deletarUsuario(id_usuario) {
+  var params = new URLSearchParams( { 'user' : id_usuario });
+  $('.btn-xs').prop('disabled', true)
+
+  fetch('../../usuarios/deletar_user', {
+    method: "POST",
+    body: params
+  }).then(function (response) {
+    buscarUsuarios();
+  });
+
+  return false;
+}
+
 function wait() {
   sendMessageButton.disabled = true;
 }
 
 function end_wait() {
   sendMessageButton.disabled = false;
-}
-
-function inativarUsuario(id_usuario) {
-  console.log(id_usuario)
-  var user = new URLSearchParams(id_usuario);
-
-  fetch('../../usuarios/inativar_user', {
-    method: "POST",
-    body: user
-  }).then(function (response) {
-    end_wait();
-  });
-
-  return false;
 }

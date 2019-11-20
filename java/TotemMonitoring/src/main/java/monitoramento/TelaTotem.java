@@ -1,6 +1,5 @@
 package monitoramento;
 
-import com.mycompany.totemmonitoring.TelaProcessos;
 import javax.swing.JLabel;
 
 /**

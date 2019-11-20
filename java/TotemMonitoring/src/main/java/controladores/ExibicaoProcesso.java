@@ -18,7 +18,6 @@ public class ExibicaoProcesso {
 
     public void mostrarDados() {
         totem.capturarDados();
-//        System.out.println("QUANTIDADE DE PROCESSOS: " + totem.getProcessos());
         telaProcessos.getTextProcessos().setText(totem.getProcessos());
     }
 

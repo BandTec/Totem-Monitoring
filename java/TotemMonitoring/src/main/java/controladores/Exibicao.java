@@ -23,11 +23,11 @@ public class Exibicao {
 
     public void mostrarDados() {
         totem.capturarDados();
-        telaTotem.getLbCpu().setText(totem.getCpu().toString());
+        telaTotem.getLbCpu().setText(String.format("%.2f", totem.getCpu()));
         telaTotem.getLbDisco().setText(totem.getDisco().toString());
         telaTotem.getLbMemoria().setText(totem.getMemoria().toString());
         telaTotem.getLbTempo().setText(totem.getTempo().toString());
         conexao.inserirDadosHW(totem.getCpu(), totem.getMemoria(), totem.getDisco());
-        logg.info("CPU: {}; Disco: {}; Memoria: {}", totem.getCpu(), totem.getDisco(), totem.getMemoria());
+        logg.info("CPU: {}; Disco: {}; Memoria: {}", String.format("%.2f", totem.getCpu()), totem.getDisco(), totem.getMemoria());
     }
 }

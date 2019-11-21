@@ -70,23 +70,11 @@ public class Totem {
     }
 
     public void capturarDados() {
-
         setTempo(LocalDateTime.now());
-        System.out.println("Captura de Tempo feita com sucesso");
-
         this.cpu = this.capturaCpu(hw.getProcessor());
-        System.out.println("Captura de CPU feita com sucesso");
-
         this.memoria = this.capturaMemoria(hw.getMemory());
-        System.out.println("Captura de Memória feita com sucesso");
-
         this.disco = this.capturaDisco();
-        System.out.println("Captura de Disco feita com sucesso");
-
         this.processos = capturarProcessos(os, hw.getMemory());
-        System.out.println("Captura de proecessos feita com sucesso");
-        
-        System.out.println("TODOS DADOS CAPTURADOS COM SUCESSO");
     }
 
     private Double capturaMemoria(GlobalMemory mem) {
@@ -116,7 +104,6 @@ public class Totem {
         dado = dado.replaceAll(",", ".");
         Double dadoFormatado = null;
         if (dado.contains("GiB")) {
-            System.out.println("GiB encontrado");
             dado = dado.replace("GiB", "");
             dadoFormatado = dadoFormatado.valueOf(dado);
             return dadoFormatado;
@@ -125,7 +112,6 @@ public class Totem {
             dadoFormatado = dadoFormatado.valueOf(dado);
             return dadoFormatado;
         }
-        System.out.println("Deu em nada: " + dado);
         return dadoFormatado;
     }
 

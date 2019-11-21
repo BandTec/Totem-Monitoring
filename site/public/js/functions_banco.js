@@ -47,11 +47,16 @@ function cadastrarUsuario() {
 
   wait();
   fk.value = sessionStorage.aeroporto;
-  var formulario = new URLSearchParams(new FormData(formulario_cadastro));
+  var admin = $('#admin').is(':checked') ? 1 : 0;
+
+  var formulario = new FormData(formulario_cadastro);
+  formulario.append('checkbox' , admin);
+
+  var params = new URLSearchParams(formdata);
 
   fetch('../../usuarios/cadastro_usuario', {
     method: "POST",
-    body: formulario
+    body: params
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {

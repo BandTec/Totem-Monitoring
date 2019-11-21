@@ -47,21 +47,18 @@ router.post('/cadastro_usuario', function (req, res, next) {
     var email = req.body.email;
     var cpf = req.body.cpf;
     var senha = req.body.password;
+    var admin = req.body.checkbox;
     var fk = req.body.fk;
 
-    if (nome == undefined || email == undefined || cpf == undefined || senha == undefined || fk == undefined) {
-      throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha} / ${fk}`);
+    if (nome == undefined || email == undefined || cpf == undefined || senha == undefined || fk == undefined || admin == undefined) {
+      throw new Error(`Algo de errado não está certo: ${nome} / ${email} / ${cpf} / ${senha} / ${fk} / ${admin}`);
     }
     else {
-      return banco.sql.query(`insert into tb_user (nome, email_user, cpf_user, senha_user, adm, fk_aeroporto) values ('${nome}', '${email}', '${cpf}', '${senha}', 0, ${fk} )`);
+      return banco.sql.query(`insert into tb_user (nome, email_user, cpf_user, senha_user, adm, fk_aeroporto) values ('${nome}', '${email}', '${cpf}', '${senha}', ${admin}, ${fk} )`);
     }
   }).then(consulta => {
 
-    if (consulta.recordset.length == 1) {
-      res.send(consulta.recordset[0]);
-    } else {
-      res.sendStatus(404);
-    }
+    res.send(true);
 
   }).catch(err => {
 

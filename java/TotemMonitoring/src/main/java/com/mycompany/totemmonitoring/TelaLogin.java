@@ -1,48 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.totemmonitoring;
 
-import conexao.ConexaoVO;
+import conexao.Conexao;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-/**
- *
- * @author Aluno
- */
 public class TelaLogin extends javax.swing.JFrame {
 
-    ConexaoVO login = new ConexaoVO();
-    JdbcTemplate jdbcTemplate = new JdbcTemplate(login.getDataSource());
-    
+    private final Conexao conexaoLogin = new Conexao();
+    List<Map<String, Object>> query;
+
     public TelaLogin() {
         initComponents();
     }
 
-    private List listarTodos(){
-        String selectBanco = String.format
-        ("select * from tb_user where nome = '%s' and senha_user = '%s' ",
-                tfUsuario.getText(),tfSenha.getText());
-        List<Map<String,Object>> query = jdbcTemplate.queryForList(
-        selectBanco);
-        System.out.println(query);
-        return query;
-     }
-    
-    private List getNameUser(){
-        String selectBanco = String.format(
-        "select nome from tb_user where nome = '%s' and senha_user = '%s' ",
-                tfUsuario.getText(),tfSenha.getText());
-        
-        List<Map<String,Object>> query = jdbcTemplate.queryForList(selectBanco);
-        return query;
-    }
-     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -64,6 +35,12 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Login");
+
+        tfSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSenhaActionPerformed(evt);
+            }
+        });
 
         btSair.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btSair.setText("Sair");
@@ -127,20 +104,23 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        listarTodos();
-        if(!listarTodos().isEmpty()){
-            TelaProcessos tela = new TelaProcessos();
-            tela.setVisible(true);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(rootPane,"Verifique as credenciais.");
+        try {
+            query = conexaoLogin.getJdbcTemplate().queryForList("select * from tb_user where nome = ?", tfUsuario.getText());
+            if (query.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Verifique as credenciais.");
+            } else {
+                this.setVisible(false);
+                Initializer.start();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
-
     }//GEN-LAST:event_btLogarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSenhaActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

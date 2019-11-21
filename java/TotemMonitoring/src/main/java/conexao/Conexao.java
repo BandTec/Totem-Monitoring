@@ -30,8 +30,7 @@ public class Conexao {
     }
 
     public List selecionarTudo(String tabela) {
-        List<Map<String, Object>> lista = jdbcTemplate.queryForList("select * from " + tabela);
-        return lista;
+        return jdbcTemplate.queryForList("select * from ?", tabela);
     }
 
     public void inserirDadosHW(Double cpu, Double memoria, Double disco) {
@@ -45,5 +44,9 @@ public class Conexao {
                 LocalDateTime.now(),
                 1,
                 2);
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 }

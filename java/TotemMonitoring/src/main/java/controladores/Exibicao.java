@@ -20,14 +20,18 @@ public class Exibicao {
     private final Logger logg = LoggerFactory.getLogger(Totem.class);
 
     AlertaSlack alerta;
-    
-    Double cpu,disco,memoria;
+
+    Double cpu, disco, memoria;
     Integer qtdProcessos;
     LocalDateTime tempo;
 
     public Exibicao(TelaTotem telaTotem) {
         this.telaTotem = telaTotem;
+    }
+
+    public void captura() {
         totem.capturarDados();
+        
         cpu = totem.getCpu();
         disco = totem.getDisco();
         memoria = totem.getMemoria();
@@ -36,13 +40,14 @@ public class Exibicao {
     }
 
     public void mostrarDados() {
-        telaTotem.getLbCpu().setText(String.format("%.2f", cpu);
+        captura();
+        telaTotem.getLbCpu().setText(String.format("%.2f", cpu));
         telaTotem.getLbDisco().setText(disco.toString());
         telaTotem.getLbMemoria().setText(memoria.toString());
         telaTotem.getLbTempo().setText(tempo.toString());
         conexao.inserirDadosHW(cpu, memoria, disco, qtdProcessos);
         alerta = new AlertaSlack(cpu, memoria, disco);
         logg.info("CPU: {}; Disco: {}; Memoria: {}; Quantidade de processos: {}",
-            String.format("%.2f", totem.getCpu()), totem.getDisco(), totem.getMemoria(), totem.getQtdProcessos());
+                String.format("%.2f", cpu), disco, memoria, qtdProcessos);
     }
 }

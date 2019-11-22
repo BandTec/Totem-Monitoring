@@ -1,6 +1,6 @@
 package com.mycompany.totemmonitoring;
 
-import conexao.Conexao;
+import conexao.banco.Conexao;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;

@@ -27,7 +27,7 @@ public class Exibicao {
         telaTotem.getLbDisco().setText(totem.getDisco().toString());
         telaTotem.getLbMemoria().setText(totem.getMemoria().toString());
         telaTotem.getLbTempo().setText(totem.getTempo().toString());
-        conexao.inserirDadosHW(totem.getCpu(), totem.getMemoria(), totem.getDisco());
-        logg.info("CPU: {}; Disco: {}; Memoria: {}", String.format("%.2f", totem.getCpu()), totem.getDisco(), totem.getMemoria());
+        conexao.inserirDadosHW(totem.getCpu(), totem.getMemoria(), totem.getDisco(), totem.getQtdProcessos());
+        logg.info("CPU: {}; Disco: {}; Memoria: {}; Quantidade de processos: {}", String.format("%.2f", totem.getCpu()), totem.getDisco(), totem.getMemoria(), totem.getQtdProcessos());
     }
 }

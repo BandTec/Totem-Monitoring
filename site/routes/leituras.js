@@ -5,10 +5,10 @@ var banco = require('../app-banco');
 
 
 //aqui cmeça o endpoint de nome "/ultimas"
-router.get('/ultimas', function (req, res, next) {
-  console.log(banco.conexao); //todas essas conexões estão no arquivo app-banco.js
+router.get('/ultimas', function (req, res, next) { //todas essas conexões estão no arquivo app-banco.js
   banco.conectar().then(() => {
-    var limite_linhas = 8;
+    console.log("CONECTOU NO BANQUINHO");
+    var limite_linhas = 6;
     return banco.sql.query(`select top ${limite_linhas} 
                                         dd_cpu,
                                         dd_memoria
@@ -25,6 +25,7 @@ router.get('/ultimas', function (req, res, next) {
   }).catch(err => {
 
     var erro = `Erro na leitura dos últimos registros: ${err}`;
+    console.log("Não foi possível querida");
     console.error(erro);
     res.status(500).send(erro);
 

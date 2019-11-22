@@ -1,7 +1,11 @@
 
-var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = myChart.getContext('2d');
 
-var myChart = new Chart(ctx, {
+window.onload = function(){
+    atualizarGrafico();
+};
+
+var teste = new Chart(ctx, {
     type: 'line',
     data: {
         labels: [],
@@ -31,8 +35,10 @@ var myChart = new Chart(ctx, {
 
 //funções de atualizar o gráfico
 function atualizarGrafico(){
+    console.log("ENTROU PRA ATUALIZAR");
 	//LEMBRA DO ENDÓINT? ENTÃO, A GENTE CHAMA ELE AQUI-> 
-    fetch('../../../../routes/leituras/ultimas', {cache: 'no-store'}).then(function (response){
+    fetch('../../leituras/ultimas', {cache: 'no-store'}).then(function (response){
+        console.log(response);
         if(response.ok){
             console.log('Conexão ta Funfando');
             response.json().then(function (resposta){ 
@@ -40,37 +46,22 @@ function atualizarGrafico(){
                 for(i=0; i<resposta.length;i++){
                     var registro = resposta[i];
                     //ifizinho para nao deixar a temperaturazinha ultrapassar 6 registros
-                    if(t3.data.datasets[0].data.length >= 6){
+                    if(teste.data.datasets[0].data.length >= 6){
                         //horas
-                        t3.data.labels.shift();
-                        t3.data.labels.push(registro.hora);
+                        teste.data.labels.shift();
+                        teste.data.labels.push(registro.hora);
                         //temperatura e umidade
-                        t3.data.datasets[0].data.shift();
-                        t3.data.datasets[0].data.push(registro.temp);
+                        teste.data.datasets[0].data.shift();
+                        teste.data.datasets[0].data.push(registro.dd_cpu);
                     }
                     else{
-                        t3.data.labels.push(registro.hora);
-                        t3.data.datasets[0].data.push(registro.temp);
+                        teste.data.labels.push(registro.hora);
+                        teste.data.datasets[0].data.push(registro.dd_cpu);
                     }
 
                     
                     //dar update nas tabelas
-                    t3.update();
-
-                    if(t4.data.datasets[0].data.length >= 6){
-                        t4.data.labels.shift();
-                        t4.data.labels.push(registro.hora);
-                        t4.data.datasets[0].data.shift();
-                        t4.data.datasets[0].data.push(registro.umid);
-                        
-                    }
-                    else{
-                        t4.data.labels.push(registro.hora);
-                        t4.data.datasets[0].data.push(registro.umid);
-                    }
-
-
-                    t4.update();
+                    teste.update();
                 }
             });
         }

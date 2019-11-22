@@ -105,7 +105,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
         try {
-            query = conexaoLogin.getJdbcTemplate().queryForList("select * from tb_user where nome = ?", tfUsuario.getText());
+            query = conexaoLogin.getJdbcTemplate().queryForList(
+                    "select * from tb_user where nome = ? and senha_user = ?", 
+                    tfUsuario.getText(), new String(tfSenha.getPassword()).trim());
             if (query.isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Verifique as credenciais.");
             } else {

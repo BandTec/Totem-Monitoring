@@ -11,7 +11,6 @@ public class Refresh {
     public Refresh(TelaTotem tela) {
         exibicao = new Exibicao(tela);
     }
-
     public void iniciar() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

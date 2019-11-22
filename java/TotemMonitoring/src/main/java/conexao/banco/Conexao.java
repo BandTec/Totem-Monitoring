@@ -1,9 +1,8 @@
-package conexao;
+package conexao.banco;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import monitoramento.Totem;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**

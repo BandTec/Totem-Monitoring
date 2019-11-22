@@ -41,3 +41,7 @@ module.exports = {
     conectar: conectar,
     sql: sql
 }
+
+
+
+

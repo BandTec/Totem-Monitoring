@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
+var ultimas = requerid('./leituras/ultimas');
 
 var app = express();
 

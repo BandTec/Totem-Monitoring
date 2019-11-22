@@ -12,13 +12,11 @@ import java.util.TimerTask;
 public class RefreshProcesso {
 
     ExibicaoProcesso exibicao;
-    Totem totem;
 
     public RefreshProcesso(TelaProcessos tela) {
-    exibicao = new ExibicaoProcesso(tela);
-        totem = new Totem();
+        exibicao = new ExibicaoProcesso(tela);
     }
-    
+
     public void iniciar() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -26,6 +24,6 @@ public class RefreshProcesso {
             public void run() {
                 exibicao.mostrarDados();
             }
-        },0,5000);
+        }, 0, 5000);
     }
 }

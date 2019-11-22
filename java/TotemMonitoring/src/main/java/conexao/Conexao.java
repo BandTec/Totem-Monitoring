@@ -33,14 +33,14 @@ public class Conexao {
         return jdbcTemplate.queryForList("select * from ?", tabela);
     }
 
-    public void inserirDadosHW(Double cpu, Double memoria, Double disco) {
-        System.out.println("ENTROU");
+    public void inserirDadosHW(Double cpu, Double memoria, Double disco, Integer qtdProcessos) {
         String cpuHelp = String.format("%.2f", cpu);
         cpuHelp = cpuHelp.replace(",", ".");
-        jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, dd_tempo, status_totem, fk_totem) values (?,?,?,?,?,?)",
+        jdbcTemplate.update("insert into tb_dados (dd_cpu, dd_memoria, dd_disco, qtd_processos, dd_tempo, status_totem, fk_totem) values (?,?,?,?,?,?,?)",
                 Double.valueOf(cpuHelp),
                 memoria,
                 disco,
+                qtdProcessos,
                 LocalDateTime.now(),
                 1,
                 2);

@@ -13,27 +13,17 @@ public class AlertaSlack {
 
     Double cpu, memoria, disco;
 
-    public AlertaSlack(Double cpu, Double memoria, Double disco) {
-        this.cpu = cpu;
-        this.memoria = memoria;
-        this.disco = disco;
-        verificarParams();
-    }
-    
-    private void verificarParams() {
-        if (memoria > 1) {
-            System.out.println("ENTROU NO VERIFICARPARAMNS");
-            enviarAlerta("Sua memoria esta cagada");
-        }
+    public AlertaSlack(String message, String color, String statusAlerta) {
+        enviarAlerta(message,color, statusAlerta);
     }
 
-    private void enviarAlerta(String message) {
+    private void enviarAlerta(String message, String color, String statusAlerta) {
         try {
             String json = String.format("{ 'attachments': [{'text':'%s',"
-                    + " 'color':'#ff9104',"
-                    + "'pretext':'Cuidado!',"
-                    + " 'footer':'Massao',"
-                    + " 'ts':''}] }", message);
+                    + " 'color':'%s',"
+                    + "'pretext':'%s',"
+                    + " 'footer':'Cardoso',"
+                    + " 'ts':''}] }", message, color, statusAlerta);
 
             URL url = new URL("https://hooks.slack.com/services/TPX0T3M7V/"
                     + "BPYUG1SD8/nByEfYcywKkEDLQGMuqjnUPL");

@@ -42,12 +42,12 @@ public class Exibicao {
     public void mostrarDados() {
         captura();
         telaTotem.getLbCpu().setText(String.format("%.2f", cpu));
-        telaTotem.getLbDisco().setText(disco.toString());
-        telaTotem.getLbMemoria().setText(memoria.toString());
+        telaTotem.getLbDisco().setText(String.format("%.2f%%", disco));
+        telaTotem.getLbMemoria().setText(String.format("%.2f", memoria));
         telaTotem.getLbTempo().setText(tempo.toString());
         conexao.inserirDadosHW(cpu, memoria, disco, qtdProcessos);
         alerta = new AlertaSlack(cpu, memoria, disco);
         logg.info("CPU: {}; Disco: {}; Memoria: {}; Quantidade de processos: {}",
-                String.format("%.2f", cpu), disco, memoria, qtdProcessos);
+                String.format("%.2f", cpu), disco, String.format("%.2f", memoria), qtdProcessos);
     }
 }

@@ -78,7 +78,7 @@ public class Totem {
     }
 
     private Double capturaMemoria(GlobalMemory mem) {
-        return formataDado(FormatUtil.formatBytes(mem.getAvailable()));
+        return 100 - (100d * mem.getAvailable()/mem.getTotal());
     }
 
     private Double capturaCpu(CentralProcessor pro) {

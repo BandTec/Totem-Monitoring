@@ -37,7 +37,7 @@ var teste = new Chart(ctx, {
 function atualizarGrafico(){
     console.log("ENTROU PRA ATUALIZAR");
 	//LEMBRA DO ENDÓINT? ENTÃO, A GENTE CHAMA ELE AQUI-> 
-    fetch('../../leituras/ultimas', {cache: 'no-store'}).then(function (response){
+    fetch('../routes/leituras/ultimas', {cache: 'no-store'}).then(function (response){
         console.log(response);
         if(response.ok){
             console.log('Conexão ta Funfando');

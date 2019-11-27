@@ -42,9 +42,9 @@ public class Exibicao {
     public void mostrarDados() {
         captura();
         mandarAlerta();
-        telaTotem.getLbCpu().setText(String.format("%.2f", cpu));
-        telaTotem.getLbDisco().setText(String.format("%.2f%%", disco));
-        telaTotem.getLbMemoria().setText(String.format("%.2f", memoria));
+        telaTotem.getLbCpu().setText(String.format("%.2f%%", cpu));
+        telaTotem.getLbDisco().setText(String.format("%.2f", disco));
+        telaTotem.getLbMemoria().setText(String.format("%.2f%%", memoria));
         telaTotem.getLbTempo().setText(tempo.toString());
         conexao.inserirDadosHW(cpu, memoria, disco, qtdProcessos);
         logg.info("CPU: {}; Disco: {}; Memoria: {}; Quantidade de processos: {}",

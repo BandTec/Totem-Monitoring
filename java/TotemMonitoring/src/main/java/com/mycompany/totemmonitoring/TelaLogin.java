@@ -13,8 +13,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("img\\lock.png")));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("img\\user.png")));
     }
 
     @SuppressWarnings("unchecked")
@@ -47,7 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btSair.setText("Sair");
         btSair.setBorder(null);
-        btSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btSair.setFocusPainted(false);
         btSair.setFocusable(false);
         btSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,7 +66,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btLogar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btLogar.setText("Entrar");
         btLogar.setBorder(null);
-        btLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btLogar.setFocusPainted(false);
         btLogar.setFocusable(false);
         btLogar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +87,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Login");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.W_RESIZE_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,6 +117,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lock.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -145,6 +144,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         tfUsuario.setBorder(null);
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -160,9 +161,9 @@ public class TelaLogin extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

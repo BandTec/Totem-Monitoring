@@ -10,7 +10,7 @@ router.get('/ultimas', function (req, res, next) { //todas essas conexões estã
   banco.conectar().then(() => {
     console.log("CONECTOU NO BANQUINHO");
     var limite_linhas = 6;
-    return banco.sql.query(`select top ${limite_linhas} 
+    return banco.sql.query(`select top ${limite_linhas}
                                         dd_cpu,
                                         dd_memoria
                                         dd_disco,
@@ -34,3 +34,5 @@ router.get('/ultimas', function (req, res, next) { //todas essas conexões estã
     banco.sql.close();
   });
 });
+
+module.exports = router;

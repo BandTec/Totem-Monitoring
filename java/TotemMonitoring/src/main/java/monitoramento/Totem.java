@@ -90,12 +90,15 @@ public class Totem {
 
     private Double capturaDisco() {
         long disponivel = 0;
+        long totalDisco = 0;
+        
         FileSystem fileSystem = os.getFileSystem();
         OSFileStore[] fsArray = fileSystem.getFileStores();
         for (OSFileStore oSFileStore : fsArray) {
             disponivel += oSFileStore.getUsableSpace();
+            totalDisco += oSFileStore.getTotalSpace();
         }
-        return formataDado(FormatUtil.formatBytes(disponivel));
+        return 100 - (100d * disponivel/totalDisco);
     }
 
     private Double formataDado(String dado) {

@@ -49,7 +49,7 @@ public class Exibicao {
         telaTotem.getLbTempo().setText(tempo.toString());
         conexao.inserirDadosHW(cpu, memoria, disco, qtdProcessos);
         logg.info("CPU: {}; Disco: {}; Memoria: {}; Quantidade de processos: {}",
-                String.format("%.2f", cpu), disco, String.format("%.2f", memoria), qtdProcessos);
+                String.format("%.2f", cpu), String.format("%.2f", disco), String.format("%.2f", memoria), qtdProcessos);
     }
 
     private void mandarAlerta() {
@@ -78,7 +78,7 @@ public class Exibicao {
             statusAlerta = "Atencao";
             telaTotem.getLbMemoria().setForeground(new Color(255, 225, 4));
 
-            if (memoria < 90) {
+            if (memoria > 90) {
                 message = "Sua memoria esta critica";
                 color = "#ec0505";
                 statusAlerta = "Critico";

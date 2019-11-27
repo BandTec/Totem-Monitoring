@@ -6,6 +6,7 @@ var banco = require('../app-banco');
 
 //aqui cmeça o endpoint de nome "/ultimas"
 router.get('/ultimas', function (req, res, next) { //todas essas conexões estão no arquivo app-banco.js
+  console.log("Chamou aqui")
   banco.conectar().then(() => {
     console.log("CONECTOU NO BANQUINHO");
     var limite_linhas = 6;

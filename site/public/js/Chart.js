@@ -22,6 +22,7 @@ var teste = new Chart(ctx, {
             label: "CPU"
         }]
     },
+    
     options: {
         responsive: true,
         hoverMode: 'index',
@@ -37,7 +38,9 @@ var teste = new Chart(ctx, {
 function atualizarGrafico(){
     console.log("ENTROU PRA ATUALIZAR");
 	//LEMBRA DO ENDÓINT? ENTÃO, A GENTE CHAMA ELE AQUI-> 
-    fetch('../../routes/leituras/ultimas', {cache: 'no-store'}).then(function (response){
+    fetch('../../leituras/ultimas', {
+        cache: 'no-store'   
+    }).then(function (response){
         console.log(response);
         if(response.ok){
             console.log('Conexão ta Funfando');

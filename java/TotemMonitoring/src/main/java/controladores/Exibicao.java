@@ -19,7 +19,7 @@ public class Exibicao {
     Conexao conexao = new Conexao();
     private final Logger logg = LoggerFactory.getLogger(Totem.class);
 
-    AlertaSlack alerta;
+    AlertaSlack alerta = new AlertaSlack();
 
     Double cpu, disco, memoria;
     Integer qtdProcessos;
@@ -55,7 +55,7 @@ public class Exibicao {
         
         String message, color, statusAlerta;
         
-        if (cpu > 1) {
+        if (cpu > 80) {
             message = "Sua CPU esta ficando sobrecarregada";
             color = "#fe9918";
             statusAlerta = "Atencao";
@@ -65,7 +65,7 @@ public class Exibicao {
                 color = "#ec0505";
                 statusAlerta = "Critico";
             }
-            new AlertaSlack(message, color, statusAlerta);
+            alerta.enviarAlerta(message, color, statusAlerta);
         }
         if (memoria > 80) {
             message = "Voce esta ficando sem armazenamento na memoria";
@@ -77,7 +77,7 @@ public class Exibicao {
                 color = "#ec0505";
                 statusAlerta = "Critico";
             }
-            new AlertaSlack(message, color, statusAlerta);
+            alerta.enviarAlerta(message, color, statusAlerta);
         }
         if (disco < 20) {
             message = "Voce esta ficando sem espaço no HD";
@@ -89,7 +89,7 @@ public class Exibicao {
                 color = "#ec0505";
                 statusAlerta = "Critico";
             }
-            new AlertaSlack(message, color, statusAlerta);
+            alerta.enviarAlerta(message, color, statusAlerta);
         }
         if (disco < 20 && memoria > 80){
             message = "Sua memoria e disco estao ficando sobrecarregados";
@@ -101,7 +101,7 @@ public class Exibicao {
                 color = "#ec0505";
                 statusAlerta = "Critico";
             }
-            new AlertaSlack(message, color, statusAlerta);
+            alerta.enviarAlerta(message, color, statusAlerta);
         }
     }
 }

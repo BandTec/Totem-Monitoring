@@ -7,17 +7,11 @@ import java.net.URL;
 
 /**
  *
- * @author Aluno
+ * @author victor.massao
  */
 public class AlertaSlack {
 
-    Double cpu, memoria, disco;
-
-    public AlertaSlack(String message, String color, String statusAlerta) {
-        enviarAlerta(message,color, statusAlerta);
-    }
-
-    private void enviarAlerta(String message, String color, String statusAlerta) {
+    public void enviarAlerta(String message, String color, String statusAlerta) {
         try {
             String json = String.format("{ 'attachments': [{'text':'%s',"
                     + " 'color':'%s',"

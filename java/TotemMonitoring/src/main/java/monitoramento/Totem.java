@@ -84,8 +84,7 @@ public class Totem {
     private Double capturaCpu(CentralProcessor pro) {
         long[] ticks = pro.getSystemCpuLoadTicks();
         Util.sleep(1000);
-        
-//        System.out.println("CPU arredondada: " + cpuLong);
+
         return pro.getSystemCpuLoadBetweenTicks(ticks) * 100;
     }
 
@@ -97,7 +96,6 @@ public class Totem {
             disponivel += oSFileStore.getUsableSpace();
         }
         return formataDado(FormatUtil.formatBytes(disponivel));
-//        return Double.valueOf(FormatUtil.formatBytes(disponivel));
     }
 
     private Double formataDado(String dado) {

@@ -2,6 +2,7 @@ package controladores;
 
 import conexao.banco.Conexao;
 import conexao.slack.AlertaSlack;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import monitoramento.TelaTotem;
 import monitoramento.Totem;
@@ -59,11 +60,13 @@ public class Exibicao {
             message = "Sua CPU esta ficando sobrecarregada";
             color = "#fe9918";
             statusAlerta = "Atencao";
+            telaTotem.getLbCpu().setForeground(new Color(255, 225, 4));
             
             if (cpu > 90){
                 message = "Sua CPU esta em risco";
                 color = "#ec0505";
                 statusAlerta = "Critico";
+                telaTotem.getLbCpu().setForeground(new Color(255, 0, 0));
             }
             alerta.enviarAlerta(message, color, statusAlerta);
         }
@@ -71,37 +74,34 @@ public class Exibicao {
             message = "Voce esta ficando sem armazenamento na memoria";
             color = "#fe9918";
             statusAlerta = "Atencao";
+            telaTotem.getLbMemoria().setForeground(new Color(255, 225, 4));
             
             if (memoria < 90){
                 message = "Sua memoria esta critica";
                 color = "#ec0505";
                 statusAlerta = "Critico";
+                telaTotem.getLbMemoria().setForeground(new Color(255, 0, 0));
             }
             alerta.enviarAlerta(message, color, statusAlerta);
         }
-        if (disco < 20) {
+        if (disco < 80) {
             message = "Voce esta ficando sem espaço no HD";
             color = "#fe9918";
             statusAlerta = "Atencao";
+            telaTotem.getLbDisco().setForeground(new Color(255, 225, 4));
             
-            if (disco < 10){
+            if (disco < 97){
                 message = "Seu HD esta cheio";
                 color = "#ec0505";
                 statusAlerta = "Critico";
+                telaTotem.getLbDisco().setForeground(new Color(255, 0, 0));
             }
             alerta.enviarAlerta(message, color, statusAlerta);
         }
-        if (disco < 20 && memoria > 80){
-            message = "Sua memoria e disco estao ficando sobrecarregados";
-            color = "#ff0000";
-            statusAlerta = "Atencao";
-            
-            if (disco < 10 && memoria > 90){
-                message = "Disco e memoria em risco";
-                color = "#ec0505";
-                statusAlerta = "Critico";
-            }
-            alerta.enviarAlerta(message, color, statusAlerta);
-        }
+        else{
+            telaTotem.getLbCpu().setForeground(new Color(0, 255, 0));
+            telaTotem.getLbMemoria().setForeground(new Color(0, 255, 0));
+            telaTotem.getLbDisco().setForeground(new Color(0, 255, 0));
+    }
     }
 }

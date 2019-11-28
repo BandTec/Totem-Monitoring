@@ -163,17 +163,32 @@ function alterarStatus(id_usuario, status) {
 }
 
 function deletarUsuario(id_usuario) {
-  var params = new URLSearchParams( { 'user' : id_usuario });
-  $('.btn-xs').prop('disabled', true)
 
-  fetch('../../usuarios/deletar_user', {
-    method: "POST",
-    body: params
-  }).then(function (response) {
-    buscarUsuarios();
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this imaginary file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var params = new URLSearchParams( { 'user' : id_usuario });
+      $('.btn-xs').prop('disabled', true)
+
+      fetch('../../usuarios/deletar_user', {
+        method: "POST",
+        body: params
+      }).then(function (response) {
+        buscarUsuarios();
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      });
+    } else {
+      swal("Your imaginary file is safe!");
+    }
   });
-
-  return false;
 }
 
 function buscarTotens() {

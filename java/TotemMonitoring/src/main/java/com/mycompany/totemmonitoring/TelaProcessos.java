@@ -65,9 +65,10 @@ public class TelaProcessos extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(94, 146, 240));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aviao.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plane.png"))); // NOI18N
 
         lbProcessos.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
+        lbProcessos.setForeground(new java.awt.Color(255, 255, 255));
         lbProcessos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbProcessos.setText("Processos");
         lbProcessos.setToolTipText("");
@@ -87,7 +88,7 @@ public class TelaProcessos extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))

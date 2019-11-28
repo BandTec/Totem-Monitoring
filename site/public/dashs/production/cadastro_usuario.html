@@ -64,7 +64,8 @@
                     <li><a href="chartjs.html">Charts</a></li>
                   </ul>
                 </li>
-                <li id="if_user_adm" style="display: none;"><a><i class="fa fa-group"></i> Gerenciamento <span class="fa fa-chevron-down"></span></a>
+                <li id="if_user_adm" style="display: none;"><a><i class="fa fa-group"></i> Gerenciamento <span
+                      class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="gerenciamento.html">Usuários</a></li>
                   </ul>
@@ -163,7 +164,7 @@
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="email" id="email2" name="confirm_email" data-validate-linked="email"
-                          required="required" class="form-control col-md-7 col-xs-12">
+                          required="required" placeholder="carlos@email.com" class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
                     <div class="item form-group">
@@ -236,6 +237,13 @@
 
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
+
+  <!-- Mascara -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+  <script type="text/javascript">
+    $("#cpf").mask("000.000.000-00");
+  </script>
 
 </body>
 

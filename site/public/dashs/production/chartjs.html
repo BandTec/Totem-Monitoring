@@ -23,8 +23,8 @@
   <script type="text/javascript" src="../../js/functions_banco.js"></script>
   <!-- Autenticação -->
   <script type="text/javascript" src="js/autenticacao.js"></script>
+  <!-- chart -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  
 </head>
 
 <body class="nav-md">
@@ -66,7 +66,8 @@
                     <li><a href="chartjs.html">Charts</a></li>
                   </ul>
                 </li>
-                <li id="if_user_adm" style="display: none;"><a><i class="fa fa-group"></i> Gerenciamento <span class="fa fa-chevron-down"></span></a>
+                <li id="if_user_adm" style="display: none;"><a><i class="fa fa-group"></i> Gerenciamento <span
+                      class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="gerenciamento.html">Usuários</a></li>
                   </ul>
@@ -94,8 +95,9 @@
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="../../login.html"><i class="fa pull-right"></i> Ajuda</a></li>
-                  <li><a href="../../login.html"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                  <li><a href="javascript:;">Ajuda</a></li>
+                  <li><a href="../../login.html" onclick="sessionStorage.clear()"><i
+                        class="fa fa-sign-out pull-right"></i> Sair</a></li>
                 </ul>
               </li>
             </ul>
@@ -114,6 +116,14 @@
           </div>
 
           <div class="clearfix"></div>
+
+          <div id="div_totens" style="display: none;" class="row">
+            <form action="">
+              <select name="" id="combo_totens">
+                <option value="selecione">Selecione um totem</option>
+              </select>
+            </form>
+          </div>
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -175,18 +185,18 @@
           </div>
         </div>
       </div>
-          
-      <!-- page content -->
-
-      <!-- footer content -->
-      <footer>
-        <div class="pull-right">
-          Totem Monitoring
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
     </div>
+    <!-- page content -->
+
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Totem Monitoring
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+  </div>
   </div>
 
   <!-- jQuery -->
@@ -197,8 +207,6 @@
   <script src="../vendors/fastclick/lib/fastclick.js"></script>
   <!-- NProgress -->
   <script src="../vendors/nprogress/nprogress.js"></script>
-  <!-- Chart.js -->
-  <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
   <!-- gauge.js -->
   <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
   <!-- bootstrap-progressbar -->
@@ -229,22 +237,21 @@
 
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js"></script>
-
-
   <!-- SCRIPT DOS GRÁFICO TUDO -->
   <script type="text/javascript" src="../../js/graficoCpu.js"></script>
-  <script type="text/javascript" src="../../js/graficoDisco.js"></script>
-
 </body>
 
 <script>
-  var name = sessionStorage.nome
-  nome_do_usuario.innerHTML = name;
-  nome_user.innerHTML = name;
+  var name = sessionStorage.nome;
+  $("#nome_do_usuario").text(name);
+  $("#nome_user").text(name);
 
   if (sessionStorage.admin == 'true') {
-    if_user_adm.style.display = 'block';
+    $("#if_user_adm").show();
   }
+  window.onload = function () {
+    buscarTotens();
+  };
 </script>
 
 </html>

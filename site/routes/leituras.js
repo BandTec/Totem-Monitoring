@@ -5,11 +5,13 @@ var banco = require('../app-banco');
 
 
 //aqui cmeça o endpoint de nome "/ultimas"
-router.get('/ultimas', function (req, res, next) { //todas essas conexões estão no arquivo app-banco.js
-  console.log("Chamou aqui")
+router.post('/ultimas', function (req, res, next) { //todas essas conexões estão no arquivo app-banco.js
+
   banco.conectar().then(() => {
-    console.log("CONECTOU NO BANQUINHO");
+    var id_totem = req.body.id_totem;
     var limite_linhas = 6;
+    console.log("testando : ", id_totem);
+
     return banco.sql.query(`select top ${limite_linhas}
                                         dd_cpu,
                                         dd_memoria,
@@ -17,16 +19,16 @@ router.get('/ultimas', function (req, res, next) { //todas essas conexões estã
                                         qtd_processos,
                                         FORMAT(dd_tempo, 'HH:mm:ss') as hora,
                                         fk_totem
-                                        from tb_dados order by id_dados desc`); //a query que vai "puxar" nossas informações
+                                        from tb_dados
+                                        where fk_totem = ${id_totem}
+                                        order by id_dados desc`); //a query que vai "puxar" nossas informações
   }).then(consulta => {
 
-    console.log(`Resultado da consulta: ${JSON.stringify(consulta.recordset)}`); ///o recordset vai guardar nossos resultados
     res.send(consulta.recordset); //o res.send vai enviar, para quem chamar esse endpoint, a nossa recordset.
 
   }).catch(err => {
 
     var erro = `Erro na leitura dos últimos registros: ${err}`;
-    console.log("Não foi possível querida");
     console.error(erro);
     res.status(500).send(erro);
 

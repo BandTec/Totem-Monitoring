@@ -93,7 +93,6 @@
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
-
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
@@ -103,7 +102,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;">Ajuda</a></li>
-                    <li><a href="../../login.html"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                    <li><a href="../../login.html" onclick="sessionStorage.clear()"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                   </ul>
                 </li>
               </ul>
@@ -216,8 +215,6 @@
         <br />
 
         <div class="row">
-
-
             </div>
             <div class="row">
             </div>
@@ -282,11 +279,11 @@
 
 <script>
   var name = sessionStorage.nome
-  nome_do_usuario.innerHTML = name;
-  nome_drop.innerHTML = name;
+  $("#nome_do_usuario").text(name);
+  $("#nome_user").text(name);
 
   if (sessionStorage.admin == 'true') {
-    if_user_adm.style.display = 'block';
+    $("#if_user_adm").show();
   }
 </script>
 

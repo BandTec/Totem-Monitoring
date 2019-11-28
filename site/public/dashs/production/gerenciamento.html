@@ -95,7 +95,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                   <li><a href="javascript:;">Ajuda</a></li>
-                  <li><a href="../../login.html"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                  <li><a href="../../login.html" onclick="sessionStorage.clear()"><i
+                        class="fa fa-sign-out pull-right"></i> Sair</a></li>
                 </ul>
               </li>
             </ul>
@@ -200,11 +201,19 @@
 </body>
 
 <script>
-  nome_do_usuario.innerHTML = name;
-  nome_drop.innerHTML = name;
+  $("#nome_do_usuario").text(name);
+  $("#nome_user").text(name);
 
-  if(sessionStorage.body != undefined){
-    body_table.innerHTML = sessionStorage.body
+  if (sessionStorage.admin == 'true') {
+    $("#if_user_adm").show();
+  }
+
+  if (sessionStorage.body != undefined) {
+    body_table.innerHTML = sessionStorage.body;
+  } else {
+    window.onload = function () {
+      buscarUsuarios();
+    };
   }
 </script>
 

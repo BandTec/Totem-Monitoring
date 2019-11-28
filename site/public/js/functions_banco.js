@@ -176,6 +176,31 @@ function deletarUsuario(id_usuario) {
   return false;
 }
 
+function buscarTotens() {
+  console.log("Buscando totens");
+
+  var params = new URLSearchParams({ 'aeroporto': sessionStorage.aeroporto });
+
+  fetch('../../usuarios/busca_totens', {
+    method: "POST",
+    body: params
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        for (let i = 0; i < resposta.length; i++) {
+          combo_totens.innerHTML += `<option value="${resposta[i].id_totem}">Totem ${i+1}</option>`;
+        }
+        div_totens.style.display = 'block';
+        atualizarGrafico();
+      });
+    } else {
+      console.log('Erro na busca de totens');
+    }
+  });
+
+  return false;
+}
+
 function wait() {
   sendMessageButton.disabled = true;
 }

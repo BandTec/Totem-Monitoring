@@ -24,7 +24,19 @@ var teste = new Chart(ctx, {
             lineTension: 0,
             fill: false,
             label: "CPU"
-        }]
+        },{
+            data: [],
+            backgroundColor: "#000000",
+            borderColor: "#000000",
+            borderWidth: 3,
+            pointStyle: 'circle',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            lineTension: 0,
+            fill: false,
+            label: "CPU"
+        }
+    ]
     },
     
     options: {
@@ -61,6 +73,7 @@ function atualizarGrafico(){
             response.json().then(function (resposta){ 
                 resposta.reverse();
                 for(i=0; i<resposta.length;i++){
+                    console.log(resposta);
                     var registro = resposta[i];
                     //ifizinho para nao deixar a temperaturazinha ultrapassar 6 registros
                     if(teste.data.datasets[0].data.length >= 6){

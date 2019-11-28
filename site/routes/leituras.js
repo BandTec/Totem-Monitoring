@@ -12,7 +12,7 @@ router.get('/ultimas', function (req, res, next) { //todas essas conexões estã
     var limite_linhas = 6;
     return banco.sql.query(`select top ${limite_linhas}
                                         dd_cpu,
-                                        dd_memoria
+                                        dd_memoria,
                                         dd_disco,
                                         qtd_processos,
                                         FORMAT(dd_tempo, 'HH:mm:ss') as hora,

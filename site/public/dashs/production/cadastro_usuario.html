@@ -31,7 +31,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-plane"></i> <span>TotemMonitoring</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-plane"></i> <span>TotemMonitoring</span></a>
           </div>
 
           <div class="clearfix"></div>
@@ -52,54 +52,55 @@
 
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index.html">Dashboard</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Gráficos<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Charts</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-group"></i> Gerenciamento <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="gerenciamento.html">Usuários</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+            <div class="menu_section">
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="index.html">Dashboard</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-bar-chart-o"></i> Gráficos<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="chartjs.html">Charts</a></li>
+                  </ul>
+                </li>
+                <li id="if_user_adm" style="display: none;"><a><i class="fa fa-group"></i> Gerenciamento <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="gerenciamento.html">Usuários</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
+          </div>
           <!-- /sidebar menu -->
         </div>
       </div>
 
       <!-- top navigation -->
       <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src="images/img.jpg" alt=""> <span id="nome_drop"></span>
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">Ajuda</a></li>
-                    <li><a href="../../login.html"><i class="fa fa-sign-out pull-right"></i>Sair</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="images/img.jpg" alt=""> <span id="nome_drop"></span>
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li><a href="javascript:;">Ajuda</a></li>
+                  <li><a href="../../login.html" onclick="sessionStorage.clear()"><i
+                        class="fa fa-sign-out pull-right"></i>Sair</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </div>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -152,8 +153,8 @@
                           class="required"></span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="email" id="email" name="email" required="required"
-                        placeholder="carlos@email.com" class="form-control col-md-7 col-xs-12">
+                        <input type="email" id="email" name="email" required="required" placeholder="carlos@email.com"
+                          class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
                     <div class="item form-group">
@@ -198,7 +199,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button id="sendMessageButton" type="button" onclick="cadastrarUsuario()" class="btn btn-success">Enviar</button>
+                        <button id="sendMessageButton" type="button" onclick="cadastrarUsuario()"
+                          class="btn btn-success">Enviar</button>
                       </div>
                     </div>
                   </form>
@@ -236,5 +238,15 @@
   <script src="../build/js/custom.min.js"></script>
 
 </body>
+
+<script>
+  var name = sessionStorage.nome;
+  $("#nome_do_usuario").text(name);
+  $("#nome_user").text(name);
+
+  if (sessionStorage.admin == 'true') {
+    $("#if_user_adm").show();
+  }
+</script>
 
 </html>

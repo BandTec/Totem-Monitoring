@@ -152,7 +152,7 @@ router.post('/deletar_user', function (req, res, next) {
 
   }).catch(err => {
 
-    var error = `Erro no update: ${err}`;
+    var erro = `Erro no update: ${err}`;
     console.log(erro);
     res.status(500).send(erro);
 
@@ -160,5 +160,38 @@ router.post('/deletar_user', function (req, res, next) {
     banco.sql.close();
   });
 });
+
+router.post('/busca_totens', function (req, res, next) {
+  console.log('Entrou para buscar os totens');
+
+  banco.conectar().then(() => {
+    var id_totem = req.body.aeroporto;
+    console.log(JSON.stringify(req.body));
+
+    if (id_totem == undefined) {
+      throw new Error(`Algo de errado não está certo: ${id_totem}`);
+    } else {
+      return banco.sql.query(`select * from tb_totem where fk_aeroporto2 = ${id_totem}`)
+    }
+
+  }).then(consulta => {
+
+    if (consulta.recordset.length >= 1) {
+      res.send(consulta.recordset);
+    } else {
+      res.sendStatus(404);
+    }
+
+  }).catch(err => {
+
+    var erro = `Erro no update: ${err}`;
+    console.log(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+});
+
 
 module.exports = router;

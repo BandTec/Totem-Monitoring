@@ -42,7 +42,7 @@ public class Conexao {
                 qtdProcessos,
                 LocalDateTime.now(),
                 1,
-                2);
+                4);
     }
 
     public JdbcTemplate getJdbcTemplate() {

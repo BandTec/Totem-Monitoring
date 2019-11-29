@@ -22,7 +22,7 @@ public class Conexao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void inserirDadosHW(Double cpu, Double memoria, Double disco, Integer qtdProcessos) {
+    public void inserirDadosHW(Double cpu, Double memoria, Double disco, Integer qtdProcessos, Integer id_totem) {
         System.out.println("Inserindo dados no banco, HORA: "+ (LocalDateTime.now(ZoneId.of("America/Sao_Paulo"))));
         String cpuHelp = String.format("%.2f", cpu);
         cpuHelp = cpuHelp.replace(",", ".");
@@ -33,7 +33,7 @@ public class Conexao {
                 qtdProcessos,
                 LocalDateTime.now(ZoneId.of("America/Buenos_Aires")),
                 1,
-                4);
+                id_totem);
     }
 
     public JdbcTemplate getJdbcTemplate() {

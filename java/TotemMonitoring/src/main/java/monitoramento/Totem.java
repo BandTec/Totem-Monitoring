@@ -13,7 +13,6 @@ import oshi.software.os.OSFileStore;
 import oshi.software.os.OSProcess;
 import oshi.software.os.OperatingSystem;
 import oshi.software.os.OperatingSystem.ProcessSort;
-import oshi.util.FormatUtil;
 import oshi.util.Util;
 
 public class Totem {

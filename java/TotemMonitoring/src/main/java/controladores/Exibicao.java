@@ -25,6 +25,7 @@ public class Exibicao {
     Double cpu, disco, memoria;
     Integer qtdProcessos;
     LocalDateTime tempo;
+    Integer id_totem = 4;
 
     public Exibicao(TelaTotem telaTotem) {
         this.telaTotem = telaTotem;
@@ -47,7 +48,7 @@ public class Exibicao {
         telaTotem.getLbDisco().setText(String.format("%.2f%%", disco));
         telaTotem.getLbMemoria().setText(String.format("%.2f%%", memoria));
         telaTotem.getLbTempo().setText(tempo.toString());
-        conexao.inserirDadosHW(cpu, memoria, disco, qtdProcessos);
+        conexao.inserirDadosHW(cpu, memoria, disco, qtdProcessos, id_totem);
         logg.info("CPU: {}; Disco: {}; Memoria: {}; Quantidade de processos: {}",
                 String.format("%.2f", cpu), String.format("%.2f", disco), String.format("%.2f", memoria), qtdProcessos);
     }
@@ -57,13 +58,13 @@ public class Exibicao {
         String message, color, statusAlerta;
 
         if (cpu > 80) {
-            message = "Sua CPU esta ficando sobrecarregada";
+            message = String.format("Sua CPU esta ficando sobrecarregada, no totem %s", id_totem);
             color = "#fe9918";
             statusAlerta = "Atencao";
             telaTotem.getLbCpu().setForeground(new Color(255, 225, 4));
 
             if (cpu > 90) {
-                message = "Sua CPU esta em risco";
+                message = String.format("Sua CPU esta em risco, no totem %s", id_totem);
                 color = "#ec0505";
                 statusAlerta = "Critico";
                 telaTotem.getLbCpu().setForeground(new Color(255, 0, 0));
@@ -73,13 +74,13 @@ public class Exibicao {
             telaTotem.getLbCpu().setForeground(new Color(0, 255, 0));
         }
         if (memoria > 80) {
-            message = "Voce esta ficando sem armazenamento na memoria";
+            message = String.format("Voce esta ficando sem armazenamento na memoria, no totem %s", id_totem);
             color = "#fe9918";
             statusAlerta = "Atencao";
             telaTotem.getLbMemoria().setForeground(new Color(255, 225, 4));
 
             if (memoria > 90) {
-                message = "Sua memoria esta critica";
+                message = String.format("Sua memoria esta critica, no totem %s", id_totem);
                 color = "#ec0505";
                 statusAlerta = "Critico";
                 telaTotem.getLbMemoria().setForeground(new Color(255, 0, 0));
@@ -89,13 +90,13 @@ public class Exibicao {
             telaTotem.getLbMemoria().setForeground(new Color(0, 255, 0));
         }
         if (disco > 80) {
-            message = "Voce esta ficando sem espaço no HD";
+            message = String.format("Voce esta ficando sem espaço no HD, no totem %s", id_totem);
             color = "#fe9918";
             statusAlerta = "Atencao";
             telaTotem.getLbDisco().setForeground(new Color(255, 225, 4));
 
             if (disco > 97) {
-                message = "Seu HD esta cheio";
+                message = String.format("Seu HD esta cheio, no totem %s", id_totem);
                 color = "#ec0505";
                 statusAlerta = "Critico";
                 telaTotem.getLbDisco().setForeground(new Color(255, 0, 0));

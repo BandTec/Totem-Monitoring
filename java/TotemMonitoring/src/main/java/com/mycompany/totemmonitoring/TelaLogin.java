@@ -226,7 +226,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Verifique as credenciais.");
             } else {
                 this.setVisible(false);
-                Initializer.start();
+                AlteradorSingleton.getInstance();
             }
         } catch (Exception e) {
             System.out.println(e);

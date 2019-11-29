@@ -163,17 +163,32 @@ function alterarStatus(id_usuario, status) {
 }
 
 function deletarUsuario(id_usuario) {
-  var params = new URLSearchParams( { 'user' : id_usuario });
-  $('.btn-xs').prop('disabled', true)
 
-  fetch('../../usuarios/deletar_user', {
-    method: "POST",
-    body: params
-  }).then(function (response) {
-    buscarUsuarios();
+  swal({
+    title: "Você tem certeza?",
+    text: "Quando um usuário é deletado, não é possivel recuperá-lo.",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var params = new URLSearchParams( { 'user' : id_usuario });
+      $('.btn-xs').prop('disabled', true)
+
+      fetch('../../usuarios/deletar_user', {
+        method: "POST",
+        body: params
+      }).then(function (response) {
+        buscarUsuarios();
+        swal("Pronto! O usuário foi deletado !", {
+          icon: "success",
+        });
+      });
+    } else {
+      swal("A conta não foi deletada!");
+    }
   });
-
-  return false;
 }
 
 function buscarTotens() {

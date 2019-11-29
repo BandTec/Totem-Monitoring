@@ -165,8 +165,8 @@ function alterarStatus(id_usuario, status) {
 function deletarUsuario(id_usuario) {
 
   swal({
-    title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this imaginary file!",
+    title: "Você tem certeza?",
+    text: "Quando um usuário é deletado, não é possivel recuperá-lo.",
     icon: "warning",
     buttons: true,
     dangerMode: true,
@@ -181,12 +181,12 @@ function deletarUsuario(id_usuario) {
         body: params
       }).then(function (response) {
         buscarUsuarios();
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("Pronto! O usuário foi deletado !", {
           icon: "success",
         });
       });
     } else {
-      swal("Your imaginary file is safe!");
+      swal("A conta não foi deletada!");
     }
   });
 }

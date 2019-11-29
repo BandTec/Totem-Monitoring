@@ -1,11 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var banco = require('../app-banco');
-// Essas três linhas possuem as "importações" do nosso arquivo
 
-
-//aqui cmeça o endpoint de nome "/ultimas"
-router.post('/ultimas', function (req, res, next) { //todas essas conexões estão no arquivo app-banco.js
+router.post('/ultimas', function (req, res, next) {
 
   banco.conectar().then(() => {
     var id_totem = req.body.id_totem;
@@ -21,10 +18,10 @@ router.post('/ultimas', function (req, res, next) { //todas essas conexões est�
                                         fk_totem
                                         from tb_dados
                                         where fk_totem = ${id_totem}
-                                        order by id_dados desc`); //a query que vai "puxar" nossas informações
+                                        order by id_dados desc`);
   }).then(consulta => {
 
-    res.send(consulta.recordset); //o res.send vai enviar, para quem chamar esse endpoint, a nossa recordset.
+    res.send(consulta.recordset);
 
   }).catch(err => {
 

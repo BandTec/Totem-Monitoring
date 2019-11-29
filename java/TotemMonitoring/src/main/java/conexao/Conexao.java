@@ -2,8 +2,6 @@ package conexao;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
-import monitoramento.Totem;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -31,6 +29,13 @@ public class Conexao {
 
     public List selecionarTudo(String tabela) {
         return jdbcTemplate.queryForList("select * from ?", tabela);
+    }
+    
+    public void addAcesso() {
+        Integer acessos = jdbcTemplate.queryForObject("select qtd_acessos from tb_totem where id_totem = 4", new Object[] {}, Integer.class);
+        acessos++;
+        jdbcTemplate.update("update tb_totem set qtd_acessos = ? where id_totem = 4", acessos);
+        System.out.println("acessos: " + acessos.toString());
     }
 
     public void inserirDadosHW(Double cpu, Double memoria, Double disco) {

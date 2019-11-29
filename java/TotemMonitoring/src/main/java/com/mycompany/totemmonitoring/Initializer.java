@@ -9,10 +9,8 @@ import monitoramento.TelaTotem;
 public class Initializer {
 
     public static void start() {
-        TelaProcessos telaprocessos = new TelaProcessos();
-        TelaTotem telaTotem = new TelaTotem();
-
-        telaprocessos.setVisible(true);
-        telaTotem.setVisible(true);
+        TelaComecar telaComecar = new TelaComecar();
+        
+        telaComecar.setVisible(true);
     }
 }

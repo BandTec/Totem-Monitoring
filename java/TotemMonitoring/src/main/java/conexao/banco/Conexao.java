@@ -1,6 +1,7 @@
 package conexao.banco;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,7 +41,7 @@ public class Conexao {
                 memoria,
                 disco,
                 qtdProcessos,
-                LocalDateTime.now(),
+                LocalDateTime.now(ZoneId.of("America/Sao_Paulo")),
                 1,
                 4);
     }

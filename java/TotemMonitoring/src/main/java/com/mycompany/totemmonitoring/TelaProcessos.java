@@ -128,7 +128,7 @@ public class TelaProcessos extends javax.swing.JFrame {
                             .addComponent(lblPid2)
                             .addComponent(lblPid1)
                             .addComponent(lblPid4))))
-                .addGap(18, 18, 18)
+                .addGap(151, 151, 151)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

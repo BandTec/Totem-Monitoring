@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 public class TelaTotem extends javax.swing.JFrame {
 
     Totem totem = new Totem();
-
+    
     public TelaTotem() {
         initComponents();
         Refresh refresh = new Refresh(this);

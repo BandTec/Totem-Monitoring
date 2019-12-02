@@ -1,4 +1,4 @@
-if(sessionStorage.usuario == undefined){
- window.location.href = '../../login.html'
-  alert('Você deve se autenticar primeiro')
-}
+﻿//if(sessionStorage.usuario == undefined){
+ //window.location.href = '../../login.html'
+  //alert('Você deve se autenticar primeiro')
+//}

@@ -10,8 +10,8 @@ var teste = new Chart(ctx, {
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: "#af2828",
-      borderColor: "#af2828",
+      backgroundColor: "#1E90FF",
+      borderColor: "#1E90FF",
       borderWidth: 3,
       pointStyle: 'circle',
       pointRadius: 5,
@@ -140,7 +140,7 @@ function atualizarGrafico() {
       console.error(`O erro é: ${error.message}`);
     });
   }
-  setTimeout('atualizarGrafico()', 6000);
+  setTimeout('atualizarGrafico()', 1000);
 }
 
 var teste2 = new Chart(ctx2, {
@@ -149,8 +149,8 @@ var teste2 = new Chart(ctx2, {
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: "#af2828",
-      borderColor: "#af2828",
+      backgroundColor: "#1E90FF",
+      borderColor: "#1E90FF",
       borderWidth: 3,
       pointStyle: 'circle',
       pointRadius: 5,
@@ -185,8 +185,8 @@ var teste3 = new Chart(ctx3, {
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: "#af2828",
-      borderColor: "#af2828",
+      backgroundColor: "#1E90FF",
+      borderColor: "#1E90FF",
       borderWidth: 3,
       pointStyle: 'circle',
       pointRadius: 5,
@@ -206,8 +206,8 @@ var teste3 = new Chart(ctx3, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 1000,
-          maxTicksLimit: 10
+          max: 500,
+          maxTicksLimit: 50
         }
       }]
 
@@ -221,8 +221,8 @@ var teste4 = new Chart(ctx4, {
     labels: [],
     datasets: [{
       data: [],
-      backgroundColor: "#af2828",
-      borderColor: "#af2828",
+      backgroundColor: "#1E90FF",
+      borderColor: "#1E90FF",
       borderWidth: 3,
       pointStyle: 'circle',
       pointRadius: 5,

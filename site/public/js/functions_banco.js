@@ -52,7 +52,7 @@ function cadastrarUsuario() {
   var formulario = new FormData(formulario_cadastro);
   formulario.append('checkbox' , admin);
 
-  var params = new URLSearchParams(formdata);
+  var params = new URLSearchParams(formulario);
 
   fetch('../../usuarios/cadastro_usuario', {
     method: "POST",

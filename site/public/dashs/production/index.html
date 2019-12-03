@@ -102,25 +102,22 @@
 
       <!-- page content -->
       <div class="right_col" role="main">
-        <div class="">
-          <div class="page-title">
-            <div class="title_left">
-              <h3>Charts</h3>
-
-            </div>
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Charts</h3>
           </div>
 
-          <div class="clearfix"></div>
+        </div>
 
-          
-          <div id="div_totens" style="display: none; margin-left: 945px; margin-bottom: 17px; width: 10px;" class="row" >
-            <form action="">
-              <select name="" id="combo_totens" style="-webkit-appearance: none; -moz-appearance: none;appearance: none; padding: 6px;border-radius: 10px; border-color: black;color: white; background-color: #2A3F54; ">
-                <div>
-                <option value="selecione">Selecione um totem</option> <b class="caret"></b>
-              </select>
-            </form>
-          </div>
+        <div id="div_totens" style="display: block" class="row col-md-2 form-group pull-right top_search">
+          <select name="" id="combo_totens" class="btn-success"
+            style="-webkit-appearance: none; -moz-appearance: none;appearance: none; padding: 6px; color: white; background-color: rgb(44, 66, 88); ">
+            <div>
+              <option value="selecione">Selecione um totem</option> <b class="caret"></b>
+          </select>
+        </div>
+        <div class="clearfix"></div>
+
         <div>
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -181,7 +178,6 @@
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
     <!-- page content -->
@@ -259,22 +255,6 @@
   var ttChatLoaderS = document.createElement('script');
   document.tomticketChatLoaderScriptVersion = 2;
   ttChatLoaderS.src = 'https://totem-monitoring.tomticket.com/scripts-chat/chat.min.js'
-  + '?id=EP35605'
-  + '&account=2278720P02102019091710'
-  + '&autoOpen=0'
-  + '&hideWhenOffline=0'
-  + '&d=totem-monitoring'
-  + '&ts=' + new Date().getTime()
-  + '&ref=' + encodeURIComponent(document.URL);
-  document.body.appendChild(ttChatLoaderS);
-  //]]>
-  </script>
-  
-  <script type="text/javascript">
-    // <![CDATA[
-    var ttChatLoaderS = document.createElement('script');
-    document.tomticketChatLoaderScriptVersion = 2;
-    ttChatLoaderS.src = 'https://totem-monitoring.tomticket.com/scripts-chat/chat.min.js'
     + '?id=EP35605'
     + '&account=2278720P02102019091710'
     + '&autoOpen=0'
@@ -282,7 +262,22 @@
     + '&d=totem-monitoring'
     + '&ts=' + new Date().getTime()
     + '&ref=' + encodeURIComponent(document.URL);
-    document.body.appendChild(ttChatLoaderS);
+  document.body.appendChild(ttChatLoaderS);
+  //]]>
+</script>
+
+<script type="text/javascript">
+  // <![CDATA[
+  var ttChatLoaderS = document.createElement('script');
+  document.tomticketChatLoaderScriptVersion = 2;
+  ttChatLoaderS.src = 'https://totem-monitoring.tomticket.com/scripts-chat/chat.min.js'
+    + '?id=EP35605'
+    + '&account=2278720P02102019091710'
+    + '&autoOpen=0'
+    + '&hideWhenOffline=0'
+    + '&d=totem-monitoring'
+    + '&ts=' + new Date().getTime()
+    + '&ref=' + encodeURIComponent(document.URL);
+  document.body.appendChild(ttChatLoaderS);
     //]]>
-    </script>
-    
+</script>

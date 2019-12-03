@@ -45,7 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btSair.setText("Sair");
         btSair.setBorder(null);
-        btSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btSair.setFocusPainted(false);
         btSair.setFocusable(false);
         btSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -66,7 +66,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btLogar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btLogar.setText("Entrar");
         btLogar.setBorder(null);
-        btLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btLogar.setFocusPainted(false);
         btLogar.setFocusable(false);
         btLogar.addMouseListener(new java.awt.event.MouseAdapter() {

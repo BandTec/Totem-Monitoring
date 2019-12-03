@@ -140,7 +140,7 @@ function atualizarGrafico() {
       console.error(`O erro é: ${error.message}`);
     });
   }
-  setTimeout('atualizarGrafico()', 1000);
+  setTimeout('atualizarGrafico()', 6000);
 }
 
 var teste2 = new Chart(ctx2, {

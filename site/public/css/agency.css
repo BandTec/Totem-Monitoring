@@ -697,3 +697,10 @@ ul.social-buttons li a {
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #31eeb5;
 }
+.newLb {
+  color: #fff;  
+}
+#message{
+  margin-top: 1%;
+ 
+}

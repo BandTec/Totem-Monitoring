@@ -109,7 +109,7 @@ function buscarUsuarios() {
               </td>
               <td>
                 <button type="button" onclick="deletarUsuario(${resposta[i].id_user})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Deletar </button>
-                <button type="button" onclick="alterarStatus(${resposta[i].id_user}, 0)" class="btn btn-xs btn-xs" style="background-color: orange"><i
+                <button type="button" onclick="alterarStatus(${resposta[i].id_user}, 0)" class="btn btn-xs btn-xs" style="background-color: orange; color: white"><i
                 class="fa fa-remove "></i> Desativar </button>
               </td>
            </tr>`;

@@ -79,13 +79,12 @@ function cadastrarUsuario() {
 function buscarUsuarios() {
 
   wait();
-  fk.value = sessionStorage.aeroporto;
-  var formulario = new URLSearchParams(new FormData(formulario_buscar));
+  var params = new URLSearchParams({ 'aeroporto': sessionStorage.aeroporto });
   body_table.innerHTML = "";
 
   fetch('../../usuarios/users', {
     method: "POST",
-    body: formulario
+    body: params
   }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {

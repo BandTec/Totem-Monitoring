@@ -77,7 +77,7 @@ router.post('/users', function (req, res, next) {
   banco.conectar().then(() => {
     console.log(`Chegou p/ busca: ${JSON.stringify(req.body)}`);
 
-    var fk_aero = req.body.fk;
+    var fk_aero = req.body.aeroporto;
 
     if (fk_aero == undefined) {
       throw new Error(`O SessionStorage não está funcionando: ${fk_aero}`);
